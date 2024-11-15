@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.view.BreedDiseaseDirectory">
+   <children>
+      <Button fx:id="back" layoutX="485.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="120.0" layoutY="24.0" text="Справочник пород. Заболевания" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="82.0" text="Введите породу:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="name" layoutX="201.0" layoutY="83.0" prefHeight="26.0" prefWidth="230.0" />
+      <Button fx:id="btnFind" layoutX="458.0" layoutY="83.0" mnemonicParsing="false" onAction="#toFind" text="Искать" textFill="#151753" />
+      <Label fx:id="error" layoutX="201.0" layoutY="60.0" />
+      <Label fx:id="listt" layoutX="81.0" layoutY="125.0" prefHeight="222.0" prefWidth="438.0" />
+      <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="530.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+
+      </ImageView>
+   </children>
+</AnchorPane>

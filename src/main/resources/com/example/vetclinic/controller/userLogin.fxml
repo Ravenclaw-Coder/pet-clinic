@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.UserLogin">
+   <children>
+      <Label layoutX="22.0" layoutY="84.0" prefHeight="115.0" prefWidth="661.0" text="Для доступа к записям выберите один из вариантов:" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
+         <font>
+            <Font name="Kefa Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="registrationUser" layoutX="22.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#toRegistrationUser" text="Зарегистрироваться" textFill="#151753">
+         <font>
+            <Font name="Kefa Regular" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="loginToAccountUser" layoutX="22.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#loginToAccountUser" style="-fx-background-color: #151753;" text="Войти" textFill="WHITE">
+         <font>
+            <Font name="Kefa Regular" size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="120.0" layoutY="224.0" text=" — если у вас уже есть аккаунт">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="253.0" layoutY="291.0" text="— если вы новый пользователь">
+         <font>
+            <Font name="Bookman Old Style" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

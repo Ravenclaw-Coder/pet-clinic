@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.view.UserAccount">
+   <children>
+      <Button fx:id="back" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="makeAnAppointment" layoutX="206.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#makeAnAppointment" text="Записаться на прием" textFill="#151753">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="toChangeData" layoutX="67.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#toChangeData" text="Изменить данные" textFill="#151753">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="myTricks" layoutX="166.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#myTricks" text="Мои приемы" textFill="#151753">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="166.0" layoutY="48.0" text="Мой аккаунт. Клиент" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="104.0" text="Имя:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="67.0" layoutY="144.0" text="Телефон:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="184.0" text="Адрес:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="name" layoutX="266.0" layoutY="107.0" text="Имя" textFill="WHITE" />
+      <Label fx:id="phone" layoutX="266.0" layoutY="147.0" text="79520780945" textFill="WHITE" />
+      <Label fx:id="adres" layoutX="266.0" layoutY="187.0" text="Москва, Никитинска 20" textFill="WHITE" />
+      <Button fx:id="cancel" layoutX="317.0" layoutY="296.0" mnemonicParsing="false" onAction="#toCancel" onMouseClicked="#myTricks" text="отменить прием" textFill="#565ac0" />
+      <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="525.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/white_on_trans.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

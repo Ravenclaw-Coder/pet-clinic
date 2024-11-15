@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.VeterinarianLogin">
+   <children>
+      <Label layoutX="22.0" layoutY="59.0" prefHeight="147.0" prefWidth="542.0" text="Для доступа к функциям клиники выберите один из вариантов:" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="loginAccountDoctor" layoutX="26.0" layoutY="196.0" mnemonicParsing="false" onMouseClicked="#loginToAccountVet" style="-fx-background-color: #151753;" text="Войти" textFill="WHITE">
+         <font>
+            <Font name="Kefa Regular" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="22.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
+         <font>
+            <Font name="Kefa Regular" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="registrationDoctor" layoutX="26.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#toRegistrationVet" text="Зарегистрироваться" textFill="#151753">
+         <font>
+            <Font name="Kefa Regular" size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="116.0" layoutY="207.0" text=" — если у вас уже есть аккаунт">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="255.0" layoutY="287.0" text="— если вы новый пользователь">
+         <font>
+            <Font name="Bookman Old Style" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
