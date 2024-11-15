@@ -68,7 +68,7 @@ public class ChangeUser {
                 userSQL.updateAdress(Integer.parseInt(user[0]), adres.getText())) {
             try {
                 Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/userAccount.fxml"));
-                Scene userAccountScene = new Scene(userAccountRoot);
+                Scene userAccountScene = new Scene(userAccountRoot); //
                 Stage window = (Stage) back.getScene().getWindow();
                 window.setScene(userAccountScene);
                 window.show();
