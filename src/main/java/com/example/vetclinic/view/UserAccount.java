@@ -1,6 +1,6 @@
 package com.example.vetclinic.view;
 
-import com.example.vetclinic.controller.UserSignIn;
+import com.example.vetclinic.controller.UserSignInController;
 import com.example.vetclinic.module.UserSQL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,17 +41,19 @@ public class UserAccount {
 
     @FXML
     private Label phone;
+
     @FXML
     private Button cancel;
 
-
-
     @FXML
     private Button toChangeData;
+
     private UserSQL userSQL;
+
     public UserAccount(){
         userSQL = UserSQL.getInstance();
     }
+
     @FXML
     void makeAnAppointment(MouseEvent event) {
         try {
@@ -77,7 +79,6 @@ public class UserAccount {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     void myTricks(MouseEvent event) {
@@ -105,7 +106,6 @@ public class UserAccount {
         }
     }
 
-
     @FXML
     void toChangeData(MouseEvent event) {
         try {
@@ -130,13 +130,9 @@ public class UserAccount {
         assert phone != null : "fx:id=\"phone\" was not injected: check your FXML file 'userAccount.fxml'.";
         assert toChangeData != null : "fx:id=\"toChangeData\" was not injected: check your FXML file 'userAccount.fxml'.";
 
-        phone.setText(UserSignIn.getLogin());
-        String[] users = userSQL.getUser(UserSignIn.getLogin());
+        phone.setText(UserSignInController.getLogin());  // Используем getLogin() из UserSignInController
+        String[] users = userSQL.getUser(UserSignInController.getLogin());
         name.setText(users[1]);
         adres.setText(users[2]);
-
-
-
     }
-
 }

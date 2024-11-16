@@ -1,6 +1,6 @@
 package com.example.vetclinic.view;
 
-import com.example.vetclinic.controller.VetSignIn;
+import com.example.vetclinic.controller.VetSignInController;
 import com.example.vetclinic.module.VeterinarianSQL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class VeterinarianAccount {
-
 
     @FXML
     private Label address;
@@ -34,6 +33,7 @@ public class VeterinarianAccount {
 
     @FXML
     private Label number;
+
     @FXML
     private Button reception;
 
@@ -42,7 +42,9 @@ public class VeterinarianAccount {
 
     @FXML
     private Button toChangeData;
+
     private VeterinarianSQL doctorSQL;
+
     public VeterinarianAccount(){
         doctorSQL = VeterinarianSQL.getInstance();
     }
@@ -86,7 +88,6 @@ public class VeterinarianAccount {
         }
     }
 
-
     @FXML
     void toBack(MouseEvent event) {
         try {
@@ -112,24 +113,23 @@ public class VeterinarianAccount {
             e.printStackTrace();
         }
     }
+
     @FXML
     void toRecep(ActionEvent event) {
         try {
-            Parent changeDataRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/controller/vetAppointController.fxml"));
-            Scene changeDataScene = new Scene(changeDataRoot);
+            Parent recepRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/controller/vetAppointController.fxml"));
+            Scene recepScene = new Scene(recepRoot);
             Stage window = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            window.setScene(changeDataScene);
+            window.setScene(recepScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-
     @FXML
     void initialize() {
-        assert address != null : "fx:id=\"adres\" was not injected: check your FXML file 'vetAccount.fxml'.";
+        assert address != null : "fx:id=\"address\" was not injected: check your FXML file 'vetAccount.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'vetAccount.fxml'.";
         assert directory != null : "fx:id=\"directory\" was not injected: check your FXML file 'vetAccount.fxml'.";
         assert myTricks != null : "fx:id=\"myTricks\" was not injected: check your FXML file 'vetAccount.fxml'.";
@@ -139,11 +139,9 @@ public class VeterinarianAccount {
         assert toChangeData != null : "fx:id=\"toChangeData\" was not injected: check your FXML file 'vetAccount.fxml'.";
         assert cancel != null : "fx:id=\"cancel\" was not injected: check your FXML file 'vetAccount.fxml'.";
 
-        number.setText(VetSignIn.getLog());
-        String[] users = doctorSQL.getDoctor(VetSignIn.getLog());
+        number.setText(VetSignInController.getLogin());  // Используем getLogin() из VetSignInController
+        String[] users = doctorSQL.getDoctor(VetSignInController.getLogin());
         name.setText(users[1]);
         address.setText(users[2]);
     }
-
-
 }

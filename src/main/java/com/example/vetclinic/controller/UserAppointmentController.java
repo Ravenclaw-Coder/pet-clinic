@@ -98,10 +98,10 @@ public class UserAppointmentController {
         else {
             //if (appointmentSQL.isOcupiedForUser(UserSignIn.getLogin(), date.getValue(), choice[0])) {
 
-            boolean flag = petSQL.addPet(name.getText(), poroda, status, UserSignIn.getLogin());
+            boolean flag = petSQL.addPet(name.getText(), poroda, status, UserSignInController.getLogin());
             boolean f_add = false;
             if (flag) {
-                f_add = appointmentSQL.addAppointment(name.getText(), date.getValue(), choice[0], UserSignIn.getLogin());
+                f_add = appointmentSQL.addAppointment(name.getText(), date.getValue(), choice[0], UserSignInController.getLogin());
             }
             if (f_add) {
                 try {

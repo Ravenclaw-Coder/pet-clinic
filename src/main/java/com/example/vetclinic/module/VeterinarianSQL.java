@@ -11,12 +11,14 @@ public class VeterinarianSQL {
     // Приватный конструктор для предотвращения создания экземпляров класса извне
     private VeterinarianSQL() {
     }
+
     public static synchronized VeterinarianSQL getInstance() {
         if (instance == null) {
             instance = new VeterinarianSQL();
         }
         return instance; //синг
     }
+
     public static int getId(LocalDate date, String time) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -24,16 +26,14 @@ public class VeterinarianSQL {
         int id = -1;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-
-            String query = "SELECT в.id AS номер " +
-                    "FROM врачи в " +
-                    "LEFT JOIN записи пв ON в.id = пв.врач_id " +
-                    "AND пв.дата = ? AND пв.время = ? " +
-                    "WHERE пв.id IS NULL " +
+            String query = "SELECT v.id AS id_ " +
+                    "FROM veterinarians v " +
+                    "LEFT JOIN appointments a ON v.id = a.veterinarian_id " +
+                    "AND a.date = ? AND a.time = ? " +
+                    "WHERE a.id IS NULL " +
                     "LIMIT 1";
 
             preparedStatement = connection.prepareStatement(query);
@@ -43,67 +43,54 @@ public class VeterinarianSQL {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getInt("номер");
+                id = resultSet.getInt("id_");
             } else {
-                System.out.println("Свободный врач не найден на указанную дату и время.");
+                System.out.println("Свободный ветеринар не найден на указанную дату и время.");
             }
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
         return id;
     }
+
+
     public boolean isUsers(String phone, String password) {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "SELECT телефон, password FROM врачи Join passwords_doctors USING(id) WHERE телефон = ? AND password = ?";
+
+            String query = "SELECT u.username, u.password " +
+                    "FROM users u " +
+                    "JOIN roles r ON u.role_id = r.id " +
+                    "JOIN veterinarians v ON v.phone = u.username " +
+                    "WHERE u.password = ? AND r.role_name = 'Veterinarian' AND v.phone = ?";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, phone);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, phone);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                String ph = resultSet.getString("телефон");
-                String pas = resultSet.getString("password");
-                System.out.println("good");
                 return true;
-                //System.out.println("Найден владелец: телефон = " + найденныйТелефон + ", пароль = " + найденныйПароль);
+            } else {
+                System.out.println("Пользователь с такими данными не найден или не является ветеринаром.");
             }
-            else
-                System.out.println("not");
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-
-
-        } catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
@@ -111,59 +98,72 @@ public class VeterinarianSQL {
         return false;
     }
 
-    public boolean addDoctor(String name, String phone, String adres, String password) {
+
+    public boolean addDoctor(String name, String phone, String address, String password) {
         Connection connection = null;
-        boolean success = false;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "INSERT INTO врачи ( имя, адрес, телефон) VALUES ( ?, ?, ?)";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, adres);
-            preparedStatement.setString(3, phone);
+            connection.setAutoCommit(false); // Отключаем автокоммит для транзакции
 
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) { //добавился ли врач?
-                addPassword(phone,password);
-                System.out.println("Врач успешно добавлен.");
-                return true;
-            } else
-                System.out.println("нет");
+            // Добавление в таблицу veterinarians
+            String queryVet = "INSERT INTO veterinarians (name, phone, address) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatementVet = connection.prepareStatement(queryVet, Statement.RETURN_GENERATED_KEYS);
+            preparedStatementVet.setString(1, name);
+            preparedStatementVet.setString(2, phone);
+            preparedStatementVet.setString(3, address);
+            preparedStatementVet.executeUpdate();
 
-            preparedStatement.close();
-            connection.close();
-        }catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
+            // Получаем ID вставленного ветеринара
+            ResultSet generatedKeys = preparedStatementVet.getGeneratedKeys();
+            if (!generatedKeys.next()) throw new SQLException("Не удалось получить ID ветеринара.");
+            int vetId = generatedKeys.getInt(1);
+
+            // Добавление в таблицу users
+            String queryUser = "INSERT INTO users (username, password, role_id) VALUES (?, ?, " +
+                    "(SELECT id FROM roles WHERE role_name = 'Veterinarian'))";
+            PreparedStatement preparedStatementUser = connection.prepareStatement(queryUser);
+            preparedStatementUser.setString(1, phone); // Username — номер телефона
+            preparedStatementUser.setString(2, password); // Пароль
+            preparedStatementUser.executeUpdate();
+
+            connection.commit(); // Фиксируем транзакцию
+            return true;
         } catch (SQLException e) {
-            System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback(); // Откат в случае ошибки
+                } catch (SQLException rollbackEx) {
+                    System.err.println("Ошибка отката транзакции: " + rollbackEx.getMessage());
+                }
+            }
+            System.err.println("Ошибка при добавлении ветеринара: " + e.getMessage());
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
-        return success;
+        return false;
     }
 
-    public static int getIdForAdd(String phone) { //просто по телефону
+//getIdForAdd
+    public static int getVeterinarianId(String phone) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         int id = -1;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "SELECT id FROM врачи WHERE телефон = ?";
+
+            // Запрос для получения ID ветеринара по номеру телефона
+            String query = "SELECT id FROM veterinarians WHERE phone = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, phone);
 
@@ -171,16 +171,12 @@ public class VeterinarianSQL {
 
             if (resultSet.next()) {
                 id = resultSet.getInt("id");
-                //System.out.println("ID владельца: " + id);
             } else {
-                System.out.println("Владелец с таким номером телефона не найден.");
+                System.out.println("Ветеринар с таким номером телефона не найден.");
             }
 
             resultSet.close();
             preparedStatement.close();
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
@@ -195,77 +191,47 @@ public class VeterinarianSQL {
         return id;
     }
 
-    public static boolean addPassword(String phone, String password) {
+    //вместо addpassword
+    public boolean addUser(String phone, String password) {
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
         boolean success = false;
 
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "INSERT INTO passwords_doctors (id, password) VALUES (?, ?)";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, getIdForAdd(phone)); //метод выше
-            preparedStatement.setString(2, password);
-            int rowsAffected = preparedStatement.executeUpdate();
 
+            // Получаем ID роли "veterinarian" из таблицы roles
+            String getRoleIdQuery = "SELECT id FROM roles WHERE role_name = ?";
+            PreparedStatement roleStmt = connection.prepareStatement(getRoleIdQuery);
+            roleStmt.setString(1, "veterinarian");
+            ResultSet roleResult = roleStmt.executeQuery();
+
+            int roleId = -1;
+            if (roleResult.next()) {
+                roleId = roleResult.getInt("id");
+            } else {
+                System.out.println("Роль 'veterinarian' не найдена.");
+                return false;
+            }
+
+            // Вставляем пользователя в таблицу users
+            String query = "INSERT INTO users (username, password, role_id) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, phone); // Используем телефон как имя пользователя
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, roleId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 success = true;
-                System.out.println("Пароль успешно добавлен для телефона " + phone);
+                System.out.println("Пользователь успешно добавлен: " + phone);
             } else {
-                System.out.println("Не удалось добавить пароль для телефона " + phone +
-                        ". Пользователь с таким телефоном не найден.");
+                System.out.println("Не удалось добавить пользователя.");
             }
 
+            roleStmt.close();
             preparedStatement.close();
-        } catch (SQLException e) {
-            System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Ошибка при закрытии ресурсов: " + e.getMessage());
-            }
-        }
-        return success;
-    }
-    public String[] getDoctor(String phone) { //
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        String[] user = new String[4];
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
-                    "root", "");
-            String query = "SELECT id, имя, адрес, телефон FROM врачи WHERE телефон = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, phone);
-
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                user[0] = resultSet.getString("id");
-                user[1] = resultSet.getString("имя");
-                user[2] = resultSet.getString("адрес");
-                user[3] = resultSet.getString("телефон");
-
-                //System.out.println("Имя владельца: " + имя);
-                //System.out.println("Адрес владельца: " + адрес);
-            } else {
-                System.out.println("Владелец с таким номером телефона не найден.");
-            }
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
@@ -277,33 +243,72 @@ public class VeterinarianSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
-        return user;
-    }
-    public boolean updateName(int idClient, String newName) {
-        return updateClientField(idClient, "имя", newName);
-    }
-    public boolean updatePhone(int idClient, String newPhone) {
-        return updateClientField(idClient, "телефон", newPhone);
+        return success;
     }
 
 
-    public boolean updateAdress(int idClient, String newAdres) {
-        return updateClientField(idClient, "адрес", newAdres);
+    public String[] getDoctor(String phone) {
+        Connection connection = null;
+        String[] doctor = new String[4];
+
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/petclinic",
+                    "root", "");
+            String query = "SELECT v.id, v.name, v.address, v.phone " +
+                    "FROM veterinarians v WHERE v.phone = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, phone);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                doctor[0] = resultSet.getString("id");
+                doctor[1] = resultSet.getString("name");
+                doctor[2] = resultSet.getString("address");
+                doctor[3] = resultSet.getString("phone");
+            } else {
+                System.out.println("Ветеринар с таким номером телефона не найден.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
+            }
+        }
+        return doctor;
     }
 
-    private boolean updateClientField(int idClient, String fieldName, String newValue) {
+
+    // Методы для обновления информации о враче
+    public boolean updateName(int doctorId, String newName) {
+        return updateDoctorField(doctorId, "name", newName);
+    }
+
+    public boolean updatePhone(int doctorId, String newPhone) {
+        return updateDoctorField(doctorId, "phone", newPhone);
+    }
+
+    public boolean updateAddress(int doctorId, String newAddress) {
+        return updateDoctorField(doctorId, "address", newAddress);
+    }
+
+    private boolean updateDoctorField(int doctorId, String fieldName, String newValue) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         boolean success = false;
 
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "UPDATE врачи SET " + fieldName + " = ? WHERE id = ?";
+            String query = "UPDATE doctors SET " + fieldName + " = ? WHERE id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, newValue);
-            preparedStatement.setInt(2, idClient);
+            preparedStatement.setInt(2, doctorId);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -324,53 +329,40 @@ public class VeterinarianSQL {
         }
         return success;
     }
-    public ArrayList<String> listAppointments(String phone, LocalDate date){
+
+    public ArrayList<String> listAppointments(String phone, LocalDate date) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        ArrayList<String> list = new ArrayList<String>();
-
+        ArrayList<String> list = new ArrayList<>();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
 
-            Statement statement = connection.createStatement();
-
-            String query = "SELECT записи.id AS id_, записи.дата AS дата, " +
-                    "животные.имя AS имя, " +
-                    "записи.время AS время_записи " +
-                    "FROM записи " +
-                    "JOIN животные ON записи.животное_id = животные.id " +
-                    "JOIN врачи ON записи.врач_id = врачи.id " +
-                    "WHERE врачи.телефон = ? and " +
-                    "записи.дата >= ?";
+            String query = "SELECT appointments.id AS appointment_id, appointments.date AS appointment_date, " +
+                    "pets.name AS pet_name, appointments.time AS appointment_time " +
+                    "FROM appointments " +
+                    "JOIN pets ON appointments.pet_id = pets.id " +
+                    "JOIN doctors ON appointments.doctor_id = doctors.id " +
+                    "WHERE doctors.phone = ? AND appointments.date >= ?";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, phone);
             preparedStatement.setDate(2, Date.valueOf(date));
 
-
             resultSet = preparedStatement.executeQuery();
 
-            // Обработка результатов запроса
             while (resultSet.next()) {
-                String str = "";
-                str+= resultSet.getInt("id_")+ " ";
-                str+= resultSet.getString("дата")+ " ";
-                str+= resultSet.getString("имя")+" ";
-                str+= resultSet.getString("время_записи");
-
-
-
-                list.add(str);
-                System.out.println("успешно");
-                // Вывод результатов на консоль (можно заменить на вашу логику обработки)
+                String appointment = resultSet.getInt("appointment_id") + " " +
+                        resultSet.getString("appointment_date") + " " +
+                        resultSet.getString("pet_name") + " " +
+                        resultSet.getString("appointment_time");
+                list.add(appointment);
             }
 
-            // Закрытие ресурсов
             resultSet.close();
             preparedStatement.close();
             connection.close();
@@ -380,7 +372,6 @@ public class VeterinarianSQL {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
             try {
-                // Закрываем соединение в блоке finally для обеспечения его закрытия в любом случае
                 if (connection != null) {
                     connection.close();
                 }
@@ -390,6 +381,4 @@ public class VeterinarianSQL {
         }
         return list;
     }
-
-
 }

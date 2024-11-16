@@ -1,6 +1,6 @@
 package com.example.vetclinic.view;
 
-import com.example.vetclinic.controller.VetSignIn;
+import com.example.vetclinic.controller.VetSignInController;
 import com.example.vetclinic.module.VeterinarianSQL;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +53,7 @@ public class VetAppointment {
         VeterinarianSQL doctorSQL = VeterinarianSQL.getInstance();
         LocalDate date_current = LocalDate.now();
         System.out.println(date_current);
-        ArrayList<String> list = doctorSQL.listAppointments(VetSignIn.getLog(),date_current);
+        ArrayList<String> list = doctorSQL.listAppointments(VetSignInController.getLogin(),date_current);
         String str = "";
         for (int i = 0; i < list.size();i++){
             str+=list.get(i)+"\n";

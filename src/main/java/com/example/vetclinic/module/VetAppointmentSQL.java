@@ -1,6 +1,5 @@
 package com.example.vetclinic.module;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,32 +19,34 @@ public class VetAppointmentSQL {
         }
         return instance;
     }
-    public boolean addRecep(int id, int id_d) {
+
+    // Метод для добавления записи о приеме
+    public boolean addAppointment(int petId, int diseaseId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         boolean success = false;
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic", // изменена на petclinic
                     "root", "");
-            String query = "INSERT INTO приемы (id_записи, id_болезни) VALUES (?, ?)";
+
+            // Изменено на таблицы и поля базы данных petclinic
+            String query = "INSERT INTO visits (pet_id, disease_id) VALUES (?, ?)";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            preparedStatement.setInt(2,id_d );
+            preparedStatement.setInt(1, petId);   // ID питомца
+            preparedStatement.setInt(2, diseaseId); // ID болезни
 
             // Выполнение запроса
-            preparedStatement.executeUpdate();
-
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
-                return true;
+                success = true; // Если запись успешно добавлена
             }
+
             preparedStatement.close();
             connection.close();
-
-
-        }catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             System.err.println("Не найден драйвер JDBC: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
@@ -58,9 +59,7 @@ public class VetAppointmentSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
+
         return success;
-
     }
-
-
 }

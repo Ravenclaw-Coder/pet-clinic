@@ -63,7 +63,7 @@ public class VetAppointmentController {
             error.setText("заполните все поля");
         }
         else {
-            boolean flag = recepSQL.addRecep(Integer.parseInt(number.getText()), Integer.parseInt(disease.getText()));
+            boolean flag = recepSQL.addAppointment(Integer.parseInt(number.getText()), Integer.parseInt(disease.getText()));
             if (flag){
                 try {
                     Parent loginRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/vetAccount.fxml"));

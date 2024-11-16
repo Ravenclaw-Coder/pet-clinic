@@ -35,23 +35,25 @@ public class ChangeUser {
     @FXML
     private Label number;
 
-
     @FXML
     private TextField password;
 
-
     @FXML
     private Button save;
+
     private UserSQL userSQL;
     private String[] user;
-    public ChangeUser(){
+
+    public ChangeUser() {
         userSQL = UserSQL.getInstance();
-        user = userSQL.getUser(UserSignIn.getLogin());
+        // Получение информации о пользователе по логину, который сохраняется в UserSignIn
+        user = userSQL.getUser(UserSignInController.getLogin());
     }
 
     @FXML
     void toBack(MouseEvent event) {
         try {
+            // Переход на экран пользовательского аккаунта
             Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/userAccount.fxml"));
             Scene userAccountScene = new Scene(userAccountRoot);
             Stage window = (Stage) back.getScene().getWindow();
@@ -64,22 +66,25 @@ public class ChangeUser {
 
     @FXML
     void toSave(MouseEvent event) throws IOException {
-        if (userSQL.updateName(Integer.parseInt(user[0]), name.getText()) &
-                userSQL.updateAdress(Integer.parseInt(user[0]), adres.getText())) {
+        // Обновление имени и адреса пользователя в базе данных
+        if (userSQL.updateName(Integer.parseInt(user[0]), name.getText()) &&
+                userSQL.updateAddress(Integer.parseInt(user[0]), adres.getText())) {
             try {
+                // Переход обратно в окно пользовательского аккаунта после успешного сохранения
                 Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/userAccount.fxml"));
-                Scene userAccountScene = new Scene(userAccountRoot); //
+                Scene userAccountScene = new Scene(userAccountRoot);
                 Stage window = (Stage) back.getScene().getWindow();
                 window.setScene(userAccountScene);
                 window.show();
             } catch (IOException e) {
-                e.printStackTrace();//
+                e.printStackTrace();
             }
         }
     }
 
     @FXML
     void initialize() {
+        // Проверка на наличие всех элементов в FXML
         assert adres != null : "fx:id=\"adres\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'changeUser.fxml'.";
@@ -88,9 +93,9 @@ public class ChangeUser {
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert number != null : "fx:id=\"number\" was not injected: check your FXML file 'changeUser.fxml'.";
 
-        number.setText(UserSignIn.getLogin());
-        name.setText(user[1]);
-        adres.setText(user[2]);
+        // Инициализация полей с данными пользователя
+        number.setText(UserSignInController.getLogin());
+        name.setText(user[1]);  // Имя пользователя
+        adres.setText(user[2]); // Адрес пользователя
     }
-
 }

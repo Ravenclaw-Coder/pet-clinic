@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.UserSignIn">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.UserSignInController">
    <children>
       <Pane layoutX="35.0" layoutY="112.0" prefHeight="173.0" prefWidth="452.0" style="-fx-background-color: #151753;" />
       <Label layoutX="42.0" layoutY="67.0" prefHeight="35.0" prefWidth="334.0" text="Вход. Клиент" textFill="WHITE">

@@ -9,37 +9,40 @@ public class PetSQL {
     // Приватный конструктор для предотвращения создания экземпляров класса извне
     private PetSQL() {
     }
+
     public static synchronized PetSQL getInstance() {
         if (instance == null) {
             instance = new PetSQL();
         }
         return instance;
     }
-    public boolean addPet(String name, String poroda, String status,String phone) {
+
+    // Метод для добавления информации о животном
+    public boolean addPet(String name, String breed, String status, String phone) {
         Connection connection = null;
-        // UserSQL userSQL = UserSQL.getInstance();
         boolean success = false;
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "INSERT INTO животные (имя, наличие_породы, название_породы, владелец_id) VALUES (?, ?, ?, ?)";
+
+            // Изменено на таблицы и поля базы данных petclinic
+            String query = "INSERT INTO pets (name, breed, status, owner_id) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
-            preparedStatement.setString(2, status);
-            preparedStatement.setString(3, poroda);
-            preparedStatement.setInt(4, UserSQL.getId(phone));
+            preparedStatement.setString(2, breed);
+            preparedStatement.setString(3, status);
+            preparedStatement.setInt(4, UserSQL.getId(phone));  // Получаем ID владельца по номеру телефона
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Запись о животном с владельцем успешно добавлена!");
-
-                return true;
-
+                success = true;
+            } else {
+                System.out.println("Не удалось добавить животное.");
             }
-            else
-                System.out.println("не добавлен");
 
             preparedStatement.close();
             connection.close();
@@ -56,8 +59,11 @@ public class PetSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
+
         return success;
     }
+
+    // Метод для получения ID животного по имени и номеру телефона владельца
     public static int getId(String phone, String name) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -67,13 +73,14 @@ public class PetSQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/vetclinic",
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
 
-            String query = "SELECT id FROM животные WHERE имя = ? AND владелец_id = ?";
+            // Изменено на таблицы и поля базы данных petclinic
+            String query = "SELECT id FROM pets WHERE name = ? AND owner_id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, UserSQL.getId(phone));
+            preparedStatement.setInt(2, UserSQL.getId(phone));  // Получаем ID владельца по номеру телефона
 
             resultSet = preparedStatement.executeQuery();
 
@@ -97,6 +104,7 @@ public class PetSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
+
         return id;
     }
 }

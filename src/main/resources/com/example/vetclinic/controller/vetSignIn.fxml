@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.VetSignIn">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.VetSignInController">
     <children>
       <Pane layoutX="36.0" layoutY="125.0" prefHeight="173.0" prefWidth="452.0" style="-fx-background-color: #151753;">
          <children>
@@ -43,6 +43,6 @@
                 <Font size="15.0" />
             </font>
         </Button>
-        <Label fx:id="error" layoutX="42.0" layoutY="248.0" textFill="WHITE" />
+        <Label fx:id="errorText" layoutX="42.0" layoutY="248.0" textFill="WHITE" />
     </children>
 </AnchorPane>

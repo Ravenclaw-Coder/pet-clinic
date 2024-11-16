@@ -9,65 +9,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/vetclinic_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/SceneManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/Start.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/VetApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/SuccessfulRegistration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserRegistration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserSignIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetSignIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VeterinarianLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VeterinarianRegistration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/UserSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VetAppointmentSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VeterinarianSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/BreedDiseaseDirectory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeVet.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/successfulRegistration.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userLogin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userRegistration.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userSignIn.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetLogin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetRegistration.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetSignIn.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/image/white_on_trans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/start.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/directory.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAppointment.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAppointment.fxml" afterDir="false" />
+    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="Новая ветка">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserSignInController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetSignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserSignIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/SignInHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/UserSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/UserSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VetAppointmentSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VetAppointmentSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VeterinarianSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VeterinarianSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/BreedDiseaseDirectory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/BreedDiseaseDirectory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userSignIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userSignIn.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetSignIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetSignIn.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +71,13 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "master2",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Маха/IdeaProjects/Pet/src/main/resources/com/example/vetclinic",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.41724136",
-    "settings.editor.selected.configurable": "preferences.externalResources"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -161,6 +127,60 @@
       <option name="presentableId" value="Default" />
       <updated>1731620938521</updated>
     </task>
+    <task id="LOCAL-00001" summary="version 1">
+      <option name="closed" value="true" />
+      <created>1731708566939</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731708566939</updated>
+    </task>
+    <task id="LOCAL-00002" summary="version 2">
+      <option name="closed" value="true" />
+      <created>1731709352264</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731709352264</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Новая ветка">
+      <option name="closed" value="true" />
+      <created>1731710286051</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731710286051</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="version 1" />
+    <MESSAGE value="version 2" />
+    <MESSAGE value="Новая ветка" />
+    <option name="LAST_COMMIT_MESSAGE" value="Новая ветка" />
   </component>
 </project>

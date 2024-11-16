@@ -66,9 +66,9 @@
       <TextField fx:id="name" layoutX="260.0" layoutY="101.0" />
       <TextField fx:id="namePoroda" layoutX="260.0" layoutY="174.0" />
       <RadioButton fx:id="btnMorn" layoutX="427.0" layoutY="262.0" mnemonicParsing="false" text="10:00" textFill="WHITE" />
-      <RadioButton fx:id="btnAft" layoutX="427.0" layoutY="293.0" mnemonicParsing="false" text="12:00" textFill="WHITE" />
+      <RadioButton fx:id="btnAft_Morn" layoutX="427.0" layoutY="293.0" mnemonicParsing="false" text="12:00" textFill="WHITE" />
       <RadioButton fx:id="btnEven" layoutX="500.0" layoutY="293.0" mnemonicParsing="false" text="18:00" textFill="WHITE" />
       <Label fx:id="error" layoutX="81.0" layoutY="293.0" />
-      <RadioButton fx:id="btnAft1" layoutX="500.0" layoutY="262.0" mnemonicParsing="false" text="14:00" textFill="WHITE" />
+      <RadioButton fx:id="btnAft" layoutX="500.0" layoutY="262.0" mnemonicParsing="false" text="14:00" textFill="WHITE" />
    </children>
 </AnchorPane>

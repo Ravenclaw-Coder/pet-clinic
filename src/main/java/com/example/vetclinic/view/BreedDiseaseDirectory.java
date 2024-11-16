@@ -48,7 +48,7 @@ public class BreedDiseaseDirectory {
             error.setText("Заполните все поля");
         }
         else {
-            ArrayList<String> list = dir.listAppointments(name.getText());
+            ArrayList<String> list = dir.listDiseasesByBreed(name.getText());
             String str = new String();
             for (int i = 0; i<list.size();i++){
                 str+=list.get(i)+"\n";

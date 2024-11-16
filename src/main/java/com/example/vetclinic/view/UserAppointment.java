@@ -1,7 +1,7 @@
 package com.example.vetclinic.view;
 
 import com.example.vetclinic.SceneManager;
-import com.example.vetclinic.controller.UserSignIn;
+import com.example.vetclinic.controller.UserSignInController;
 import com.example.vetclinic.module.UserSQL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,18 +34,18 @@ public class UserAppointment {
         assert tricks != null : "fx:id=\"tricks\" was not injected: check your FXML file 'userAppointment.fxml'.";
 
         UserSQL userSQL = UserSQL.getInstance();
-        ArrayList<String> list = userSQL.listAppointments(UserSignIn.getLogin(), LocalDate.now());
+        ArrayList<String> list = userSQL.listAppointments(UserSignInController.getLogin(), LocalDate.now());
         String str = "";
 
         if (list.isEmpty()) {
             tricks.setText("У вас нет записей.");
-            LOGGER.info("No appointments found for user: " + UserSignIn.getLogin());
+            LOGGER.info("No appointments found for user: " + UserSignInController.getLogin());
         } else {
             for (String appointment : list) {
                 str += appointment + "\n";
             }
             tricks.setText(str);
-            LOGGER.info("Appointments listed for user: " + UserSignIn.getLogin());
+            LOGGER.info("Appointments listed for user: " + UserSignInController.getLogin());
         }
     }
 }
