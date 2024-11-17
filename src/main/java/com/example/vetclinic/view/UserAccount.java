@@ -70,7 +70,7 @@ public class UserAccount {
     @FXML
     void toCancel(ActionEvent event) {
         try {
-            Parent myTricksRoot = FXMLLoader.load(getClass().getResource("cancelUser.fxml"));
+            Parent myTricksRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/controller/cancel.fxml"));
             Scene myTricksScene = new Scene(myTricksRoot);
             Stage window = (Stage) cancel.getScene().getWindow();
             window.setScene(myTricksScene);

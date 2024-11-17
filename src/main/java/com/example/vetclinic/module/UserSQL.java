@@ -284,9 +284,7 @@ public class UserSQL {
         return updateClientField(idClient, "name", newName);
     }
 
-    public boolean updatePhone(int idClient, String newPhone) {
-        return updateClientField(idClient, "phone", newPhone);
-    }
+
 
     public boolean updateAddress(int idClient, String newAddress) {
         return updateClientField(idClient, "address", newAddress);

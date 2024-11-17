@@ -66,19 +66,38 @@ public class ChangeUser {
 
     @FXML
     void toSave(MouseEvent event) throws IOException {
+        // Получаем новый пароль из поля ввода
+        String newPassword = password.getText();
+
         // Обновление имени и адреса пользователя в базе данных
-        if (userSQL.updateName(Integer.parseInt(user[0]), name.getText()) &&
-                userSQL.updateAddress(Integer.parseInt(user[0]), address.getText())) {
-            try {
-                // Переход обратно в окно пользовательского аккаунта после успешного сохранения
-                Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/userAccount.fxml"));
-                Scene userAccountScene = new Scene(userAccountRoot);
-                Stage window = (Stage) back.getScene().getWindow();
-                window.setScene(userAccountScene);
-                window.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+        boolean isUpdated = userSQL.updateName(Integer.parseInt(user[0]), name.getText()) &&
+                userSQL.updateAddress(Integer.parseInt(user[0]), address.getText());
+
+        // Если данные были обновлены и пароль не пустой, пытаемся обновить пароль
+        if (isUpdated) {
+            boolean passwordUpdated = false;
+
+            // Если новый пароль не пустой, обновляем пароль
+            if (!newPassword.isEmpty()) {
+                passwordUpdated = userSQL.addPassword(user[3], newPassword); // user[3] - это телефон пользователя
             }
+
+            // Переход в аккаунт после сохранения данных (имя, адрес или пароль)
+            Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/userAccount.fxml"));
+            Scene userAccountScene = new Scene(userAccountRoot);
+            Stage window = (Stage) back.getScene().getWindow();
+            window.setScene(userAccountScene);
+            window.show();
+
+            if (passwordUpdated) {
+                System.out.println("Пароль успешно обновлен.");
+            } else if (!newPassword.isEmpty()) {
+                // Если пароль не обновился, выводим ошибку
+                System.out.println("Ошибка при обновлении пароля.");
+            }
+        } else {
+            // Если не удалось обновить имя или адрес
+            System.out.println("Ошибка при обновлении данных.");
         }
     }
 

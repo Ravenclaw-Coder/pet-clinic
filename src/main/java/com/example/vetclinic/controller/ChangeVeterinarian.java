@@ -41,11 +41,11 @@ public class ChangeVeterinarian {
     @FXML
     private Button save;
     private String[] user;
-    private VeterinarianSQL doctorSQL;
+    private VeterinarianSQL veterinarianSQL;
 
     public ChangeVeterinarian(){
-        doctorSQL = VeterinarianSQL.getInstance();
-        user = doctorSQL.getVet(VetSignInController.getLogin()); //подаем номер телефона, для получнения статик массив
+        veterinarianSQL = VeterinarianSQL.getInstance();
+        user = veterinarianSQL.getVet(VetSignInController.getLogin()); //подаем номер телефона, для получнения статик массив
     }
 
     @FXML
@@ -62,18 +62,39 @@ public class ChangeVeterinarian {
     }
 
     @FXML
-    void toSave(MouseEvent event) {
-        if (doctorSQL.updateName(Integer.parseInt(user[0]), name.getText()) &
-                doctorSQL.updateAddress(Integer.parseInt(user[0]), address.getText())) {
-            try {
-                Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/vetAccount.fxml"));
-                Scene userAccountScene = new Scene(userAccountRoot);
-                Stage window = (Stage) back.getScene().getWindow();
-                window.setScene(userAccountScene);
-                window.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+    void toSave(MouseEvent event) throws IOException {
+        // Получаем новый пароль из поля ввода
+        String newPassword = password.getText();
+
+        // Обновление имени и адреса пользователя в базе данных
+        boolean isUpdated = veterinarianSQL.updateName(Integer.parseInt(user[0]), name.getText()) &&
+                veterinarianSQL.updateAddress(Integer.parseInt(user[0]), address.getText());
+
+        // Если данные были обновлены и пароль не пустой, пытаемся обновить пароль
+        if (isUpdated) {
+            boolean passwordUpdated = false;
+
+            // Если новый пароль не пустой, обновляем пароль
+            if (!newPassword.isEmpty()) {
+                passwordUpdated = veterinarianSQL.addPassword(user[2], newPassword); // user[2] - это телефон пользователя
             }
+
+            // Переход в аккаунт после сохранения данных (имя, адрес или пароль)
+            Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/vetAccount.fxml"));
+            Scene userAccountScene = new Scene(userAccountRoot);
+            Stage window = (Stage) back.getScene().getWindow();
+            window.setScene(userAccountScene);
+            window.show();
+
+            if (passwordUpdated) {
+                System.out.println("Пароль успешно обновлен.");
+            } else if (!newPassword.isEmpty()) {
+                // Если пароль не обновился, выводим ошибку
+                System.out.println("Ошибка при обновлении пароля.");
+            }
+        } else {
+            // Если не удалось обновить имя или адрес
+            System.out.println("Ошибка при обновлении данных.");
         }
     }
 

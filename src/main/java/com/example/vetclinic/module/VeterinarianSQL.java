@@ -188,8 +188,8 @@ public class VeterinarianSQL {
         return id;
     }
 
-    //вместо addpassword
-    public boolean addUser(String phone, String password) {
+
+    public boolean addPassword(String phone, String password) {
         Connection connection = null;
         boolean success = false;
 
@@ -286,9 +286,7 @@ public class VeterinarianSQL {
         return updateDoctorField(doctorId, "name", newName);
     }
 
-    public boolean updatePhone(int doctorId, String newPhone) {
-        return updateDoctorField(doctorId, "phone", newPhone);
-    }
+
 
     public boolean updateAddress(int doctorId, String newAddress) {
         return updateDoctorField(doctorId, "address", newAddress);
