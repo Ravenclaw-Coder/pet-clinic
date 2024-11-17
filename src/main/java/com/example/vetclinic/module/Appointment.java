@@ -8,6 +8,7 @@ public class Appointment {
     private final SimpleIntegerProperty appointmentId;
     private final SimpleStringProperty appointmentDate;
     private final SimpleStringProperty petName;
+    private final SimpleStringProperty vetName;
     private final SimpleStringProperty appointmentTime;
     private final SimpleBooleanProperty isCompleted; // Финальное поле должно быть инициализировано
 
@@ -16,6 +17,7 @@ public class Appointment {
         this.appointmentId = new SimpleIntegerProperty(appointmentId);
         this.appointmentDate = new SimpleStringProperty(appointmentDate);
         this.petName = new SimpleStringProperty(petName);
+        this.vetName = new SimpleStringProperty(petName);
         this.appointmentTime = new SimpleStringProperty(appointmentTime);
         this.isCompleted = new SimpleBooleanProperty(isCompleted); // Инициализация
     }
@@ -39,7 +41,7 @@ public class Appointment {
     }
 
     public String getVetName() {
-        return petName.get();
+        return vetName.get();
     }
 
     public String getAppointmentTime() {
