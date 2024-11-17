@@ -9,40 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="таблица ветеринаров подключена">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/Appointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/Disease.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/DiseaseViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/diseaseView.fxml" afterDir="false" />
+    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="version 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VeterinarianRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VeterinarianRegistration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/UserSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/UserSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VetAppointmentSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VetAppointmentSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VeterinarianSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/VeterinarianSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/BreedDiseaseDirectory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/BreedDiseaseDirectory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeVet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeVet.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userLogin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetLogin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/start.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/start.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/directory.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/directory.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAppointment.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAppointment.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731722442244</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="version 3">
+      <option name="closed" value="true" />
+      <created>1731806176315</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731806176315</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,19 +159,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -200,6 +170,7 @@
     <MESSAGE value="version 2" />
     <MESSAGE value="Новая ветка" />
     <MESSAGE value="таблица ветеринаров подключена" />
-    <option name="LAST_COMMIT_MESSAGE" value="таблица ветеринаров подключена" />
+    <MESSAGE value="version 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 3" />
   </component>
 </project>

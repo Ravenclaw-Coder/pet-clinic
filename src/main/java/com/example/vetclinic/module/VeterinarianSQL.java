@@ -108,26 +108,22 @@ public class VeterinarianSQL {
 
             connection.setAutoCommit(false); // Отключаем автокоммит для транзакции
 
-            // Добавление в таблицу veterinarians
-            String queryVet = "INSERT INTO veterinarians (name, phone, address) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatementVet = connection.prepareStatement(queryVet, Statement.RETURN_GENERATED_KEYS);
-            preparedStatementVet.setString(1, name);
-            preparedStatementVet.setString(2, phone);
-            preparedStatementVet.setString(3, address);
-            preparedStatementVet.executeUpdate();
-
-            // Получаем ID вставленного ветеринара
-            ResultSet generatedKeys = preparedStatementVet.getGeneratedKeys();
-            if (!generatedKeys.next()) throw new SQLException("Не удалось получить ID ветеринара.");
-            int vetId = generatedKeys.getInt(1);
-
             // Добавление в таблицу users
             String queryUser = "INSERT INTO users (username, password, role_id) VALUES (?, ?, " +
                     "(SELECT id FROM roles WHERE role_name = 'Veterinarian'))";
+
             PreparedStatement preparedStatementUser = connection.prepareStatement(queryUser);
             preparedStatementUser.setString(1, phone); // Username — номер телефона
             preparedStatementUser.setString(2, password); // Пароль
             preparedStatementUser.executeUpdate();
+
+            // Добавление в таблицу veterinarians
+            String queryVet = "INSERT INTO veterinarians (name, phone, address) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatementVet = connection.prepareStatement(queryVet);
+            preparedStatementVet.setString(1, name);
+            preparedStatementVet.setString(2, phone);
+            preparedStatementVet.setString(3, address);
+            preparedStatementVet.executeUpdate();
 
             connection.commit(); // Фиксируем транзакцию
             return true;
@@ -150,7 +146,8 @@ public class VeterinarianSQL {
         return false;
     }
 
-//getIdForAdd
+
+    //getIdForAdd
     public static int getVeterinarianId(String phone) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

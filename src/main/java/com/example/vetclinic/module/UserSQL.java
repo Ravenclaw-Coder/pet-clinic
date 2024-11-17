@@ -75,53 +75,54 @@ public class UserSQL {
                     "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
 
-            // Вставка данных в таблицу owners
-            String query = "INSERT INTO owners (name, phone, address) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, phone);
-            preparedStatement.setString(3, address);
+            connection.setAutoCommit(false); // Начало транзакции
 
-            int rowsInserted = preparedStatement.executeUpdate();
+            // Сначала добавляем запись в таблицу users
+            String queryUser = "INSERT INTO users (username, password, role_id) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatementUser = connection.prepareStatement(queryUser);
+            preparedStatementUser.setString(1, phone); // username совпадает с phone
+            preparedStatementUser.setString(2, password);
+            preparedStatementUser.setInt(3, getRoleId("Owner")); // Получение ID роли "Owner"
+            int rowsInsertedUser = preparedStatementUser.executeUpdate();
 
-            if (rowsInserted > 0) {
-                ResultSet keys = preparedStatement.getGeneratedKeys();
-                if (keys.next()) {
-                    int ownerId = keys.getInt(1);
+            if (rowsInsertedUser > 0) {
+                // Затем добавляем запись в таблицу owners
+                String queryOwner = "INSERT INTO owners (name, phone, address) VALUES (?, ?, ?)";
+                PreparedStatement preparedStatementOwner = connection.prepareStatement(queryOwner);
+                preparedStatementOwner.setString(1, name);
+                preparedStatementOwner.setString(2, phone); // phone должен совпадать с username
+                preparedStatementOwner.setString(3, address);
+                int rowsInsertedOwner = preparedStatementOwner.executeUpdate();
 
-                    // Добавляем пользователя в таблицу users
-                    String userQuery = "INSERT INTO users (id, username, password, role_id) VALUES (?, ?, ?, ?)";
-                    PreparedStatement userStmt = connection.prepareStatement(userQuery);
-                    userStmt.setInt(1, ownerId);
-                    userStmt.setString(2, name); // username совпадает с именем
-                    userStmt.setString(3, password);
-                    userStmt.setInt(4, getRoleId("Owner")); // Получаем роль "owner"
-                    userStmt.executeUpdate();
-                    userStmt.close();
-
-                    System.out.println("Новый владелец и пользователь успешно добавлены!");
+                if (rowsInsertedOwner > 0) {
+                    connection.commit(); // Фиксация транзакции
+                    System.out.println("Пользователь успешно добавлен.");
                     return true;
                 }
-            } else {
-                System.out.println("Не удалось добавить владельца.");
             }
 
-            preparedStatement.close();
-        } catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
-        } catch (SQLException e) {
-            System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
+            connection.rollback(); // Откат, если добавление не удалось
+            System.out.println("Не удалось добавить пользователя или владельца.");
+        } catch (Exception e) {
+            if (connection != null) {
+                try {
+                    connection.rollback(); // Откат изменений при ошибке
+                } catch (SQLException rollbackEx) {
+                    System.err.println("Ошибка отката транзакции: " + rollbackEx.getMessage());
+                }
+            }
+            System.err.println("Ошибка при добавлении пользователя: " + e.getMessage());
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
         return false;
     }
+
+
 
     // Метод для получения ID роли
     private int getRoleId(String roleName) throws SQLException {

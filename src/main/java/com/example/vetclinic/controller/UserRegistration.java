@@ -45,11 +45,11 @@ public class UserRegistration {
     @FXML
     void registration(ActionEvent event) {
         try {
-            if (name.getText().isEmpty() || password.getText().isEmpty() || number.getText().isEmpty() || address.getText().isEmpty()) {
+            if (name.getText().isEmpty() || password.getText().isEmpty() || address.getText().isEmpty() || number.getText().isEmpty()) {
                 errorText.setText("Заполните все поля");
                 LOGGER.warning("All fields must be filled.");
             } else {
-                boolean flag = userSQL.addUser(name.getText(), number.getText(), address.getText(), password.getText());
+                boolean flag = userSQL.addUser(name.getText(), address.getText(), number.getText(), password.getText());
                 if (flag) {
                     SceneManager.getInstance().switchScene("/com/example/vetclinic/controller/userSignIn.fxml");
                     LOGGER.info("User registered successfully.");

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -30,7 +31,7 @@ public class BreedDiseaseDirectory {
     @FXML
     private Button btnFind;
     @FXML
-    private Label list;
+    private TextArea list;
 
 
     @FXML
@@ -56,8 +57,8 @@ public class BreedDiseaseDirectory {
         } else {
             error.setText("");
             StringBuilder formattedOutput = new StringBuilder();
-            formattedOutput.append(String.format("%-25s | %-25s%n", "Common Name", "Scientific Name"));
-            formattedOutput.append("------------------------------------------------------------\n");
+            formattedOutput.append(String.format("%-25s | %-25s%n", "Common Name", "Scient_Name"));
+            formattedOutput.append("------------------------------------------------\n");
 
             for (String disease : list) {
                 String[] parts = disease.split(" ", 2); // Разделение на common_name и scientific_name
@@ -90,7 +91,7 @@ public class BreedDiseaseDirectory {
         assert btnFind != null : "fx:id=\"btnFind\" was not injected: check your FXML file 'directory.fxml'.";
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'directory.fxml'.";
         assert error != null : "fx:id=\"error\" was not injected: check your FXML file 'directory.fxml'.";
-        assert list != null : "fx:id=\"listt\" was not injected: check your FXML file 'directory.fxml'.";
+        assert list != null : "fx:id=\"list\" was not injected: check your FXML file 'directory.fxml'.";
     }
 
 }

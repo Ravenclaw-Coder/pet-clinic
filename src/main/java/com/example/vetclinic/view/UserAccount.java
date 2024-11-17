@@ -72,7 +72,7 @@ public class UserAccount {
         try {
             Parent myTricksRoot = FXMLLoader.load(getClass().getResource("cancelUser.fxml"));
             Scene myTricksScene = new Scene(myTricksRoot);
-            Stage window = (Stage) myTricks.getScene().getWindow();
+            Stage window = (Stage) cancel.getScene().getWindow();
             window.setScene(myTricksScene);
             window.show();
         } catch (IOException e) {

@@ -28,10 +28,10 @@ public class VeterinarianRegistration {
     @FXML
     private Button registration;
 
-    private VeterinarianSQL doctorSQL;
+    private VeterinarianSQL vetSQL;
 
     public VeterinarianRegistration() {
-        doctorSQL = VeterinarianSQL.getInstance();
+        vetSQL = VeterinarianSQL.getInstance();
     }
 
     @FXML
@@ -39,7 +39,7 @@ public class VeterinarianRegistration {
         if (name.getText().isEmpty() || password.getText().isEmpty() || number.getText().isEmpty() || address.getText().isEmpty()) {
             // errorText.setText("Заполните все поля");
         } else {
-            boolean flag = doctorSQL.addDoctor(name.getText(), number.getText(), address.getText(), password.getText());
+            boolean flag = vetSQL.addDoctor(name.getText(), number.getText(), address.getText(), password.getText());
             if (flag) {
                 SceneManager.getInstance().switchScene("/com/example/vetclinic/controller/vetSignIn.fxml");
             } else {
