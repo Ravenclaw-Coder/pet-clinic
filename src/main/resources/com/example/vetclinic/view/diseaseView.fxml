@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10" style="-fx-background-color: #151753;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.vetclinic.view.DiseaseViewController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10" style="-fx-background-color: #151753;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.vetclinic.view.DiseaseView">
     <Label prefWidth="150.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Список болезней" textFill="WHITE">
       <font>
          <Font size="20.0" />

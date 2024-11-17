@@ -75,6 +75,9 @@ public class UserAppointmentController {
     }
 
     @FXML
+    private CheckBox isOwnerCheckBox; // Галочка для указания владельца питомца
+
+    @FXML
     void recording(MouseEvent event) {
         String petName = name.getText();
         String breed = clicker.isSelected() ? namePoroda.getText() : null;
@@ -91,15 +94,17 @@ public class UserAppointmentController {
             return;
         }
 
-        String ownerPhone = UserSignInController.getLogin(); // Получаем телефон владельца, использующего систему
+        String ownerPhone = UserSignInController.getLogin(); // Получаем телефон владельца
 
         // Проверяем, есть ли питомец у данного владельца
         int petId = petSQL.getPetId(petName, ownerPhone);
         boolean petExists = petId != -1; // Если petId != -1, значит питомец уже существует
 
+        boolean isOwner = isOwnerCheckBox.isSelected(); // Проверка, является ли питомец с хозяином
+
         // Если питомца нет, добавляем его
         if (!petExists) {
-            boolean petAdded = petSQL.addPet(petName, breed != null ? "1" : "0", breed, ownerPhone);
+            boolean petAdded = petSQL.addPet(petName, breed != null ? "1" : "0", breed, ownerPhone, isOwner);
             if (!petAdded) {
                 error.setText("Не удалось добавить питомца.");
                 return;
@@ -107,9 +112,6 @@ public class UserAppointmentController {
         }
 
         // Логика для добавления записи на прием
-        boolean isOwner = true; // Предполагаем, что запись делает владелец
-
-        // Добавляем запись на прием, передавая правильные параметры
         boolean appointmentAdded = appointmentSQL.addAppointment(petName, breed, appointmentDate, time, ownerPhone, isOwner);
         if (appointmentAdded) {
             try {
@@ -124,6 +126,7 @@ public class UserAppointmentController {
             error.setText("Ошибка добавления записи. Попробуйте снова.");
         }
     }
+
 
 
 

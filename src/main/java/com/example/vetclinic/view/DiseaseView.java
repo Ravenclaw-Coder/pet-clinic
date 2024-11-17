@@ -11,7 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class DiseaseViewController {
+public class DiseaseView {
 
     @FXML
     private TableView<Disease> diseaseTable;

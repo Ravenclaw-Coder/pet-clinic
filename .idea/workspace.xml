@@ -9,9 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="фильтрация записей. консультация">
+    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="version 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/PetSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/DiseaseViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/DiseaseView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/diseaseView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/diseaseView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731824695695</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="version 4">
+      <option name="closed" value="true" />
+      <created>1731826987350</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731826987350</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -193,6 +208,7 @@
     <MESSAGE value="регистрация отлажена" />
     <MESSAGE value="изменения данных отлажены" />
     <MESSAGE value="фильтрация записей. консультация" />
-    <option name="LAST_COMMIT_MESSAGE" value="фильтрация записей. консультация" />
+    <MESSAGE value="version 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 4" />
   </component>
 </project>

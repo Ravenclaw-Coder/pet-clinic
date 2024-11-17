@@ -19,30 +19,30 @@
                 <Font name="System Bold" size="29.0" />
             </font>
         </Label>
-        <Label layoutX="25.0" layoutY="95.0" text="Код приема" textFill="WHITE">
+        <Label layoutX="104.0" layoutY="95.0" text="Код приема" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="appoint_id" layoutX="164.0" layoutY="95.0" prefHeight="26.0" prefWidth="230.0" />
+        <TextField fx:id="appoint_id" layoutX="229.0" layoutY="96.0" prefHeight="26.0" prefWidth="230.0" />
         <Label fx:id="error" layoutX="201.0" layoutY="60.0" />
-        <Label layoutX="25.0" layoutY="139.0" text="Заболевание" textFill="WHITE">
+        <Label layoutX="57.0" layoutY="139.0" text="Код заболевания" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="disease_id" layoutX="164.0" layoutY="139.0" prefHeight="26.0" prefWidth="230.0" />
-        <Button fx:id="back1" layoutX="255.0" layoutY="251.0" mnemonicParsing="false" onAction="#toRecep" onMouseClicked="#toBack" text="Проведен" textFill="#151753">
+        <TextField fx:id="disease_id" layoutX="228.0" layoutY="140.0" prefHeight="26.0" prefWidth="230.0" />
+        <Button fx:id="back1" layoutX="255.0" layoutY="270.0" mnemonicParsing="false" onAction="#toRecep" onMouseClicked="#toBack" text="Проведен" textFill="#151753">
             <font>
                 <Font size="15.0" />
             </font>
         </Button>
-      <CheckBox fx:id="ownerCheckbox" layoutX="166.0" layoutY="187.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Есть владелец?" textFill="WHITE">
+      <CheckBox fx:id="ownerCheckbox" layoutX="228.0" layoutY="187.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Есть владелец?" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </CheckBox>
-      <Label layoutX="41.0" layoutY="165.0" text="(Диагноз)" textFill="WHITE">
+      <Label layoutX="133.0" layoutY="166.0" text="(Диагноз)" textFill="WHITE">
          <font>
             <Font name="System Italic" size="17.0" />
          </font>

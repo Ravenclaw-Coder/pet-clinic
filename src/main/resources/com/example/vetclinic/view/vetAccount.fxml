@@ -87,8 +87,8 @@
          </image>
       </ImageView>
       <Button fx:id="viewDiseasesButton" layoutX="401.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#viewDiseases" style="-fx-background-color: #455fb5;" text="Код заболеваний" textFill="WHITE" />
-      <Separator layoutX="67.0" layoutY="130.0" prefWidth="300.0" />
-      <Separator layoutX="67.0" layoutY="170.0" prefWidth="300.0" />
-      <Separator layoutX="67.0" layoutY="210.0" prefWidth="300.0" />
+      <Separator layoutX="67.0" layoutY="130.0" prefHeight="3.0" prefWidth="429.0" />
+      <Separator layoutX="67.0" layoutY="170.0" prefHeight="3.0" prefWidth="429.0" />
+      <Separator layoutX="67.0" layoutY="210.0" prefHeight="3.0" prefWidth="429.0" />
     </children>
 </AnchorPane>

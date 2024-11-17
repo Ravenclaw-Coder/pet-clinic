@@ -50,7 +50,7 @@ public class PetSQL {
     }
 
     // Метод для добавления информации о животном
-    public boolean addPet(String petName, String hasBreed, String breed, String ownerPhone) {
+    public boolean addPet(String petName, String hasBreed, String breed, String ownerPhone, boolean isOwner) {
         Connection connection = null;
         boolean success = false;
         int ownerId = getOwnerId(ownerPhone);
@@ -62,7 +62,6 @@ public class PetSQL {
                 return false; // Ошибка при добавлении владельца
             }
         }
-
 
         // Обработка поля breed
         Integer breedValue = null;
@@ -76,12 +75,13 @@ public class PetSQL {
                     "jdbc:mysql://localhost:3306/petclinic", "root", "");
 
             // Запрос на добавление питомца
-            String query = "INSERT INTO pets (name, has_breed, breed_id, owner_id) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO pets (name, has_breed, breed_id, owner_id, is_owner) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, petName);
             preparedStatement.setString(2, hasBreed);  // Устанавливаем 1 или 0 для наличия породы
             preparedStatement.setObject(3, breedValue);  // Если breed не указан, передаем null
             preparedStatement.setInt(4, ownerId);  // Указываем owner_id владельца
+            preparedStatement.setBoolean(5, isOwner);  // Указываем флаг is_owner
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -100,6 +100,7 @@ public class PetSQL {
         }
         return success;
     }
+
 
 
     // Метод для получения breed_id по имени породы

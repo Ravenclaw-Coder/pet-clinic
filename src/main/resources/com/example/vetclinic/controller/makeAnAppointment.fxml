@@ -51,7 +51,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="recording" layoutX="233.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#recording" text="Записаться" textFill="#151753">
+      <Button fx:id="recording" layoutX="233.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#recording" prefHeight="43.0" prefWidth="115.0" text="Записаться" textFill="#151753">
          <font>
             <Font size="18.0" />
          </font>
@@ -61,7 +61,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <CheckBox fx:id="clicker" layoutX="260.0" layoutY="139.0" mnemonicParsing="false" onAction="#togglePoroda" textFill="#511b1b" />
+      <CheckBox fx:id="clicker" layoutX="260.0" layoutY="139.0" mnemonicParsing="false" onAction="#togglePoroda" textFill="WHITE" />
       <DatePicker fx:id="date" layoutX="133.0" layoutY="256.0" promptText="date" />
       <TextField fx:id="name" layoutX="260.0" layoutY="101.0" />
       <TextField fx:id="namePoroda" disable="true" layoutX="260.0" layoutY="174.0" /> <!-- Поле породы изначально отключено -->
@@ -70,5 +70,10 @@
       <RadioButton fx:id="btnEven" layoutX="500.0" layoutY="293.0" mnemonicParsing="false" text="18:00" textFill="WHITE" />
       <Label fx:id="error" layoutX="81.0" layoutY="293.0" />
       <RadioButton fx:id="btnAft" layoutX="500.0" layoutY="262.0" mnemonicParsing="false" text="14:00" textFill="WHITE" />
+      <CheckBox fx:id="isOwnerCheckBox" layoutX="49.0" layoutY="333.0" prefHeight="43.0" prefWidth="168.0" style="-fx-background-color: #000000;" text="Вы являетесь хозяином?" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></CheckBox>
+
    </children>
 </AnchorPane>
