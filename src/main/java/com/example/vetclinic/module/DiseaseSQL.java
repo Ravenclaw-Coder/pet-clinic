@@ -1,14 +1,15 @@
 package com.example.vetclinic.module;
 
+import java.sql.*;
+import java.util.ArrayList;
+
 public class DiseaseSQL {
-    // Статическая переменная, которая содержит единственный экземпляр класса
+
     private static DiseaseSQL instance;
 
-    // Приватный конструктор для предотвращения создания экземпляров класса извне
     private DiseaseSQL() {
     }
 
-    // Синглтон для получения экземпляра класса
     public static synchronized DiseaseSQL getInstance() {
         if (instance == null) {
             instance = new DiseaseSQL();
@@ -16,6 +17,25 @@ public class DiseaseSQL {
         return instance;
     }
 
-    // Дополнительные методы для работы с болезнями в базе данных можно добавить ниже
-    // Например, методы для добавления болезни, получения информации о болезни и т.д.
+    public ArrayList<Disease> getAllDiseases() {
+        ArrayList<Disease> diseases = new ArrayList<>();
+        String query = "SELECT id, common_name, scientific_name FROM diseases";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/petclinic", "root", "");
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                diseases.add(new Disease(
+                        resultSet.getInt("id"),
+                        resultSet.getString("common_name"),
+                        resultSet.getString("scientific_name")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return diseases;
+    }
 }

@@ -24,7 +24,7 @@ public class ChangeVeterinarian {
     private URL location;
 
     @FXML
-    private TextField adres;
+    private TextField address;
 
     @FXML
     private Button back;
@@ -42,9 +42,10 @@ public class ChangeVeterinarian {
     private Button save;
     private String[] user;
     private VeterinarianSQL doctorSQL;
+
     public ChangeVeterinarian(){
         doctorSQL = VeterinarianSQL.getInstance();
-        user = doctorSQL.getDoctor(VetSignInController.getLogin()); //подаем номер телефона, для получнения статик массив
+        user = doctorSQL.getVet(VetSignInController.getLogin()); //подаем номер телефона, для получнения статик массив
     }
 
     @FXML
@@ -63,7 +64,7 @@ public class ChangeVeterinarian {
     @FXML
     void toSave(MouseEvent event) {
         if (doctorSQL.updateName(Integer.parseInt(user[0]), name.getText()) &
-                doctorSQL.updateAddress(Integer.parseInt(user[0]), adres.getText())) {
+                doctorSQL.updateAddress(Integer.parseInt(user[0]), address.getText())) {
             try {
                 Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/vetAccount.fxml"));
                 Scene userAccountScene = new Scene(userAccountRoot);
@@ -78,15 +79,16 @@ public class ChangeVeterinarian {
 
     @FXML
     void initialize() {
-        assert adres != null : "fx:id=\"adres\" was not injected: check your FXML file 'changeVet.fxml'.";
+        assert address != null : "fx:id=\"address\" was not injected: check your FXML file 'changeVet.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'changeVet.fxml'.";
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'changeVet.fxml'.";
         assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'changeVet.fxml'.";
         assert phone != null : "fx:id=\"phone\" was not injected: check your FXML file 'changeVet.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'changeVet.fxml'.";
+
         phone.setText(VetSignInController.getLogin());
         name.setText(user[1]);
-        adres.setText(user[2]);
+        address.setText(user[3]);
     }
 
 }

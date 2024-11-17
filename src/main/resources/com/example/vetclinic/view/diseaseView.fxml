@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.vetclinic.view.DiseaseViewController" spacing="10" alignment="CENTER">
+    <Label text="Список болезней" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+    <TableView fx:id="diseaseTable" prefHeight="400" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
+            <TableColumn fx:id="commonNameColumn" text="Common_Name" prefWidth="250" />
+            <TableColumn fx:id="scientificNameColumn" text="Scientific_Name " prefWidth="250" />
+        </columns>
+    </TableView>
+    <Button text="Вернуться" fx:id="closeButton" onAction="#onClose" />
+</VBox>

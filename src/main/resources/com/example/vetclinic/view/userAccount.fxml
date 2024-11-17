@@ -24,7 +24,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="myTricks" layoutX="166.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#myTricks" text="Мои приемы" textFill="#151753">
+      <Button fx:id="myTricks" layoutX="67.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#myTricks" text="Мои записи" textFill="#151753">
          <font>
             <Font size="18.0" />
          </font>
@@ -48,10 +48,19 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="266.0" layoutY="107.0" text="Имя" textFill="WHITE" />
-      <Label fx:id="phone" layoutX="266.0" layoutY="147.0" text="79520780945" textFill="WHITE" />
-      <Label fx:id="adres" layoutX="266.0" layoutY="187.0" text="Москва, Никитинска 20" textFill="WHITE" />
-      <Button fx:id="cancel" layoutX="317.0" layoutY="296.0" mnemonicParsing="false" onAction="#toCancel" onMouseClicked="#myTricks" text="отменить прием" textFill="#565ac0" />
+      <Label fx:id="name" layoutX="266.0" layoutY="107.0" text="Имя" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="phone" layoutX="266.0" layoutY="147.0" text="79520780945" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="address" layoutX="266.0" layoutY="187.0" text="Улица, дом" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Button fx:id="cancel" layoutX="228.0" layoutY="296.0" mnemonicParsing="false" onAction="#toCancel" onMouseClicked="#myTricks" text="отменить запись" textFill="#565ac0" />
       <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="525.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/white_on_trans.png" />

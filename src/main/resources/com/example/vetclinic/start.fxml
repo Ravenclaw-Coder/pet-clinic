@@ -9,24 +9,24 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87CEEB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.Start">
     <children>
-        <Label layoutX="138.0" layoutY="20.0" prefHeight="38.0" prefWidth="317.0" text="Ветеринарная клиника" textFill="#fffefe">
+        <Label layoutX="121.0" layoutY="20.0" prefHeight="38.0" prefWidth="358.0" text="Ветеринарная клиника" textAlignment="CENTER" textFill="#fffefe">
             <font>
-                <Font name="Bookman Old Style" size="26.0" />
+                <Font name="Bookman Old Style" size="29.0" />
             </font>
         </Label>
-        <Label layoutX="20.0" layoutY="118.0" prefHeight="68.0" prefWidth="560.0" text="&quot;Шерстяной заклинатель&quot;" textAlignment="CENTER" textFill="#242d59">
+        <Label layoutX="105.0" layoutY="124.0" prefHeight="76.0" prefWidth="384.0" text="WOOL CHARMER" textAlignment="CENTER" textFill="#242d59">
             <font>
-                <Font name="System Bold" size="42.0" />
+                <Font name="Impact" size="60.0" />
             </font>
         </Label>
-        <Button fx:id="ButtonUser" layoutX="403.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#ClickUser" text="Клиент" textFill="#242d59">
+        <Button fx:id="ButtonUser" layoutX="396.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#ClickUser" style="-fx-background-color: #242d59;" text="Клиент" textFill="WHITE">
             <font>
-                <Font size="23.0" />
+                <Font size="26.0" />
             </font>
         </Button>
-        <Button fx:id="ButtonDoctor" layoutX="72.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#ClickVeterinarian" prefHeight="50.0" prefWidth="157.0" text="Ветеринар" textFill="#3a4b94">
+        <Button fx:id="ButtonDoctor" layoutX="75.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#ClickVeterinarian" prefHeight="55.0" prefWidth="169.0" text="Ветеринар" textFill="#3a4b94">
             <font>
-                <Font size="23.0" />
+                <Font size="26.0" />
             </font>
         </Button>
       <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="518.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">

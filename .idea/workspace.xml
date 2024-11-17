@@ -9,16 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="Новая ветка">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserSignInController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetSignInController.java" afterDir="false" />
+    <list default="true" id="54676b65-f122-4e87-8869-622ef003e10f" name="Changes" comment="таблица ветеринаров подключена">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/Appointment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/Disease.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/DiseaseViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/diseaseView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/ChangeVeterinarian.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserAppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/UserSignIn.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetAppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/VetSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/controller/SignInHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/AppointmentSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DirectorySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/module/DiseaseSQL.java" afterDir="false" />
@@ -31,9 +31,18 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/UserAppointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VetAppointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vetclinic/view/VeterinarianAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeVet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/changeVet.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/makeAnAppointment.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userSignIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userSignIn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetSignIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetSignIn.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/userLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetAppointController.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/controller/vetLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/start.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/start.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/directory.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/directory.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAccount.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/userAppointment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAccount.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAppointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/vetclinic/view/vetAppointment.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +52,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -151,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731710286051</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="таблица ветеринаров подключена">
+      <option name="closed" value="true" />
+      <created>1731722442243</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731722442244</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,6 +199,7 @@
     <MESSAGE value="version 1" />
     <MESSAGE value="version 2" />
     <MESSAGE value="Новая ветка" />
-    <option name="LAST_COMMIT_MESSAGE" value="Новая ветка" />
+    <MESSAGE value="таблица ветеринаров подключена" />
+    <option name="LAST_COMMIT_MESSAGE" value="таблица ветеринаров подключена" />
   </component>
 </project>

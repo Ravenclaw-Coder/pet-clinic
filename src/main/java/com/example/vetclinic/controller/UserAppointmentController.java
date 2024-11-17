@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class UserAppointmentController {
@@ -49,85 +50,83 @@ public class UserAppointmentController {
 
     @FXML
     private TextField namePoroda;
+
     @FXML
     private Label error;
+
     @FXML
     private ToggleGroup groupTime;
 
     @FXML
     private Button recording;
+
     private PetSQL petSQL;
     private AppointmentSQL appointmentSQL;
+
     public UserAppointmentController(){
         petSQL = PetSQL.getInstance();
         appointmentSQL = AppointmentSQL.getInstance();
     }
-    @FXML
-    void clicker(MouseEvent event) {
-
-    }
 
     @FXML
-    void isPoroda(ActionEvent event) {
-        namePoroda.setDisable(false);
+    private void togglePoroda(ActionEvent event) {
+        // Включаем/выключаем поле ввода породы в зависимости от состояния флажка
+        namePoroda.setDisable(!clicker.isSelected());
     }
+
     @FXML
     void recording(MouseEvent event) {
-        String status = "false";
-        String poroda = "";
-        if (!namePoroda.getText().isEmpty()){
-            status = "true";
-            poroda = namePoroda.getText();
-        }
-        String[] choice = new String[2];
-        if (btnMorn.isSelected()){
-            choice[0] = "10:00";
-        }
-        if (btnAft_Morn.isSelected()){
-            choice[0] = "12:00";
-        }
-        if (btnAft.isSelected()){
-            choice[0] = "14:00";
-        }
-        if (btnEven.isSelected()){
-            choice[0] = "18:00";
-        }
-        if (name.getText().isEmpty() & date.getValue()==null & choice[0] == null) {
+        String petName = name.getText();
+        String breed = clicker.isSelected() ? namePoroda.getText() : null;
+        LocalDate appointmentDate = date.getValue();
+        String time = null;
+
+        if (btnMorn.isSelected()) time = "10:00";
+        else if (btnAft_Morn.isSelected()) time = "12:00";
+        else if (btnAft.isSelected()) time = "14:00";
+        else if (btnEven.isSelected()) time = "18:00";
+
+        if (petName.isEmpty() || appointmentDate == null || time == null) {
             error.setText("Заполните все поля");
+            return;
         }
-        else {
-            //if (appointmentSQL.isOcupiedForUser(UserSignIn.getLogin(), date.getValue(), choice[0])) {
 
-            boolean flag = petSQL.addPet(name.getText(), poroda, status, UserSignInController.getLogin());
-            boolean f_add = false;
-            if (flag) {
-                f_add = appointmentSQL.addAppointment(name.getText(), date.getValue(), choice[0], UserSignInController.getLogin());
+        String ownerPhone = UserSignInController.getLogin(); // Получаем телефон владельца, использующего систему
+
+        // Проверяем, есть ли питомец у данного владельца
+        int petId = petSQL.getPetId(petName, ownerPhone);
+        boolean petExists = petId != -1; // Если petId != -1, значит питомец уже существует
+
+        // Если питомца нет, добавляем его
+        if (!petExists) {
+            boolean petAdded = petSQL.addPet(petName, breed != null ? "1" : "0", breed, ownerPhone);
+            if (!petAdded) {
+                error.setText("Не удалось добавить питомца.");
+                return;
             }
-            if (f_add) {
-                try {
+        }
 
-                    Parent successfulRegistrationRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/controller/successfulRegistration.fxml"));
-                    Scene successfulRegistrationScene = new Scene(successfulRegistrationRoot);
-                    Stage window = (Stage) back.getScene().getWindow();
-                    window.setScene(successfulRegistrationScene);
-                    window.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        // Логика для добавления записи на прием
+        boolean isOwner = true; // Предполагаем, что запись делает владелец
 
+        // Добавляем запись на прием, передавая правильные параметры
+        boolean appointmentAdded = appointmentSQL.addAppointment(petName, breed, appointmentDate, time, ownerPhone, isOwner);
+        if (appointmentAdded) {
+            try {
+                Parent successRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/controller/successfulRegistration.fxml"));
+                Stage window = (Stage) back.getScene().getWindow();
+                window.setScene(new Scene(successRoot));
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            else {
-                error.setText("Нет мест");
-            }
-//            }
-//
-//            else {
-//                error.setText("вы уже записаны на прием в это время");
-//            }
-
-
+        } else {
+            error.setText("Ошибка добавления записи. Попробуйте снова.");
         }
     }
+
+
+
 
     @FXML
     void toBack(MouseEvent event) {
@@ -144,22 +143,11 @@ public class UserAppointmentController {
 
     @FXML
     void initialize() {
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert btnAft != null : "fx:id=\"btnAft\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert btnEven != null : "fx:id=\"btnEven\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert btnMorn != null : "fx:id=\"btnMorn\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert clicker != null : "fx:id=\"clicker\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert date != null : "fx:id=\"date\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert namePoroda != null : "fx:id=\"namePoroda\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert recording != null : "fx:id=\"recording\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-        assert error != null : "fx:id=\"error\" was not injected: check your FXML file 'makeAnAppointment.fxml'.";
-
         groupTime = new ToggleGroup();
         btnAft.setToggleGroup(groupTime);
+        btnAft_Morn.setToggleGroup(groupTime);
         btnEven.setToggleGroup(groupTime);
         btnMorn.setToggleGroup(groupTime);
-
         namePoroda.setDisable(true);
     }
 }

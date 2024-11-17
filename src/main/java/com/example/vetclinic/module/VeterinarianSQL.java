@@ -247,7 +247,7 @@ public class VeterinarianSQL {
     }
 
 
-    public String[] getDoctor(String phone) {
+    public String[] getVet(String phone) {
         Connection connection = null;
         String[] doctor = new String[4];
 
@@ -255,8 +255,7 @@ public class VeterinarianSQL {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "SELECT v.id, v.name, v.address, v.phone " +
-                    "FROM veterinarians v WHERE v.phone = ?";
+            String query = "SELECT id, name, phone, address FROM veterinarians WHERE phone = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, phone);
 
@@ -265,8 +264,10 @@ public class VeterinarianSQL {
             if (resultSet.next()) {
                 doctor[0] = resultSet.getString("id");
                 doctor[1] = resultSet.getString("name");
-                doctor[2] = resultSet.getString("address");
-                doctor[3] = resultSet.getString("phone");
+                doctor[2] = resultSet.getString("phone");
+                doctor[3] = resultSet.getString("address");
+
+
             } else {
                 System.out.println("Ветеринар с таким номером телефона не найден.");
             }
@@ -305,7 +306,7 @@ public class VeterinarianSQL {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
-            String query = "UPDATE doctors SET " + fieldName + " = ? WHERE id = ?";
+            String query = "UPDATE veterinarians SET " + fieldName + " = ? WHERE id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, newValue);
             preparedStatement.setInt(2, doctorId);
@@ -342,12 +343,12 @@ public class VeterinarianSQL {
                     "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
 
-            String query = "SELECT appointments.id AS appointment_id, appointments.date AS appointment_date, " +
-                    "pets.name AS pet_name, appointments.time AS appointment_time " +
+            String query = "SELECT appointments.id AS appointment_id, appointments.appointment_date AS appointment_date, " +
+                    "pets.name AS pet_name, appointments.appointment_time AS appointment_time " +
                     "FROM appointments " +
                     "JOIN pets ON appointments.pet_id = pets.id " +
-                    "JOIN doctors ON appointments.doctor_id = doctors.id " +
-                    "WHERE doctors.phone = ? AND appointments.date >= ?";
+                    "JOIN veterinarians ON appointments.veterinarian_id = veterinarians.id " +
+                    "WHERE veterinarians.phone = ? AND appointments.appointment_date >= ?";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, phone);

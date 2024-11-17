@@ -32,15 +32,21 @@ public class DirectorySQL {
                     "jdbc:mysql://localhost:3306/petclinic", // подключение к базе данных petclinic
                     "root", "");
 
-            String query = "SELECT disease_name, scientific_name FROM diseases WHERE breed_name = ?";
+            String query = """
+                SELECT d.common_name, d.scientific_name
+                FROM diseases d
+                JOIN breed_disease bd ON d.id = bd.disease_id
+                JOIN breeds b ON b.id = bd.breed_id
+                WHERE b.breed_name = ?
+                """;
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, breedName);
 
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String disease = resultSet.getString("disease_name") + " " +
-                        resultSet.getString("scientific_name");
+                String disease = resultSet.getString("common_name") + " (" +
+                        resultSet.getString("scientific_name") + ")";
                 diseasesList.add(disease);
             }
 
@@ -50,11 +56,11 @@ public class DirectorySQL {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
             } catch (SQLException e) {
-                System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
+                System.err.println("Ошибка при закрытии ресурсов: " + e.getMessage());
             }
         }
         return diseasesList;

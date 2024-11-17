@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.ChangeVeterinarian">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.ChangeUser">
    <children>
       <Button fx:id="back" layoutX="484.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
          <font>
@@ -41,7 +41,7 @@
          </font>
       </Label>
       <TextField fx:id="name" layoutX="220.0" layoutY="106.0" />
-      <TextField fx:id="adres" layoutX="220.0" layoutY="145.0" />
+      <TextField fx:id="address" layoutX="220.0" layoutY="145.0" />
       <TextField fx:id="password" layoutX="220.0" layoutY="228.0" />
       <Label layoutX="27.0" layoutY="53.0" text="Изменение моих персональных данных" textFill="WHITE">
          <font>

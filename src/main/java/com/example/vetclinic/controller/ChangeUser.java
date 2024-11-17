@@ -24,7 +24,7 @@ public class ChangeUser {
     private URL location;
 
     @FXML
-    private TextField adres;
+    private TextField address;
 
     @FXML
     private Button back;
@@ -33,7 +33,7 @@ public class ChangeUser {
     private TextField name;
 
     @FXML
-    private Label number;
+    private Label phone;
 
     @FXML
     private TextField password;
@@ -68,7 +68,7 @@ public class ChangeUser {
     void toSave(MouseEvent event) throws IOException {
         // Обновление имени и адреса пользователя в базе данных
         if (userSQL.updateName(Integer.parseInt(user[0]), name.getText()) &&
-                userSQL.updateAddress(Integer.parseInt(user[0]), adres.getText())) {
+                userSQL.updateAddress(Integer.parseInt(user[0]), address.getText())) {
             try {
                 // Переход обратно в окно пользовательского аккаунта после успешного сохранения
                 Parent userAccountRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/userAccount.fxml"));
@@ -85,17 +85,16 @@ public class ChangeUser {
     @FXML
     void initialize() {
         // Проверка на наличие всех элементов в FXML
-        assert adres != null : "fx:id=\"adres\" was not injected: check your FXML file 'changeUser.fxml'.";
+        assert address != null : "fx:id=\"address\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'changeUser.fxml'.";
-        assert number != null : "fx:id=\"number\" was not injected: check your FXML file 'changeUser.fxml'.";
+        assert phone != null : "fx:id=\"number\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'changeUser.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'changeUser.fxml'.";
-        assert number != null : "fx:id=\"number\" was not injected: check your FXML file 'changeUser.fxml'.";
 
         // Инициализация полей с данными пользователя
-        number.setText(UserSignInController.getLogin());
+        phone.setText(UserSignInController.getLogin());
         name.setText(user[1]);  // Имя пользователя
-        adres.setText(user[2]); // Адрес пользователя
+        address.setText(user[2]); // Адрес пользователя
     }
 }

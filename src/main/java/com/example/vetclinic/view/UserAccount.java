@@ -25,7 +25,7 @@ public class UserAccount {
     private URL location;
 
     @FXML
-    private Label adres;
+    private Label address;
 
     @FXML
     private Button back;
@@ -121,7 +121,7 @@ public class UserAccount {
 
     @FXML
     void initialize() {
-        assert adres != null : "fx:id=\"adres\" was not injected: check your FXML file 'userAccount.fxml'.";
+        assert address != null : "fx:id=\"address\" was not injected: check your FXML file 'userAccount.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'userAccount.fxml'.";
         assert cancel != null : "fx:id=\"cancel\" was not injected: check your FXML file 'userAccount.fxml'.";
         assert makeAnAppointment != null : "fx:id=\"makeAnAppointment\" was not injected: check your FXML file 'userAccount.fxml'.";
@@ -133,6 +133,6 @@ public class UserAccount {
         phone.setText(UserSignInController.getLogin());  // Используем getLogin() из UserSignInController
         String[] users = userSQL.getUser(UserSignInController.getLogin());
         name.setText(users[1]);
-        adres.setText(users[2]);
+        address.setText(users[2]);
     }
 }

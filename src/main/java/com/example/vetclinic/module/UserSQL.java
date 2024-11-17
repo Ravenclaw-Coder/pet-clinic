@@ -29,15 +29,15 @@ public class UserSQL {
                     "root", "");
 
             // Исправленный запрос
-            String query = "SELECT u.id " +
+            String query = "SELECT u.username, u.password " +
                     "FROM users u " +
-                    "JOIN owners o ON u.id = o.id " +
                     "JOIN roles r ON u.role_id = r.id " +
-                    "WHERE o.phone = ? AND u.password = ? AND r.role_name = 'Owner'";
+                    "JOIN owners o ON o.phone = u.username " +
+                    "WHERE u.password = ? AND r.role_name = 'Owner' AND o.phone = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, phone);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, phone);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -325,11 +325,11 @@ public class UserSQL {
         return success;
     }
 
-    public ArrayList<String> listAppointments(String phone, LocalDate date) {
+    public ArrayList<Appointment> listAppointments(String phone, LocalDate date) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<Appointment> appointments = new ArrayList<>();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -337,12 +337,12 @@ public class UserSQL {
                     "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
 
-            String query = "SELECT appointments.id AS id_, appointments.date AS date, " +
-                    "doctors.name AS doctor_name, appointments.time AS appointment_time " +
+            String query =  "SELECT appointments.id AS appointment_id, appointments.appointment_date AS appointment_date, " +
+                    "veterinarians.name AS veterinarian_name, appointments.appointment_time AS appointment_time " +
                     "FROM appointments " +
                     "JOIN pets ON appointments.pet_id = pets.id " +
-                    "JOIN doctors ON appointments.doctor_id = doctors.id " +
-                    "WHERE pets.owner_id = ? AND appointments.date >= ?";
+                    "JOIN veterinarians ON appointments.veterinarian_id = veterinarians.id " +
+                    "WHERE pets.owner_id = ? AND appointments.appointment_date >= ?";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, getId(phone));
@@ -350,12 +350,19 @@ public class UserSQL {
 
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                String str = resultSet.getInt("id_") + " " +
-                        resultSet.getString("date") + " " +
-                        resultSet.getString("doctor_name") + " " +
-                        resultSet.getString("appointment_time");
-                list.add(str);
+            // Логирование результата
+            if (!resultSet.next()) {
+                System.out.println("Нет данных по запросу");
+            } else {
+                do {
+                    Appointment appointment = new Appointment(
+                            resultSet.getInt("appointment_id"),
+                            resultSet.getString("appointment_date"),
+                            resultSet.getString("veterinarian_name"),
+                            resultSet.getString("appointment_time")
+                    );
+                    appointments.add(appointment);
+                } while (resultSet.next());
             }
 
             resultSet.close();
@@ -374,6 +381,6 @@ public class UserSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
-        return list;
+        return appointments;
     }
 }

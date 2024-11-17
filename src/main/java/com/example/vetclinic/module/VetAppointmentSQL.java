@@ -21,40 +21,36 @@ public class VetAppointmentSQL {
     }
 
     // Метод для добавления записи о приеме
-    public boolean addAppointment(int petId, int diseaseId) {
+    // Метод для добавления консультации
+    public boolean addConsultation(int appointmentId, int diseaseId, boolean isOwner) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         boolean success = false;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/petclinic", // изменена на petclinic
+                    "jdbc:mysql://localhost:3306/petclinic",
                     "root", "");
 
-            // Изменено на таблицы и поля базы данных petclinic
-            String query = "INSERT INTO visits (pet_id, disease_id) VALUES (?, ?)";
+            String query = "INSERT INTO consultations (appointment_id, disease_id, is_owner) VALUES (?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, petId);   // ID питомца
-            preparedStatement.setInt(2, diseaseId); // ID болезни
+            preparedStatement.setInt(1, appointmentId); // ID приема
+            preparedStatement.setInt(2, diseaseId);    // ID болезни
+            preparedStatement.setBoolean(3, isOwner);  // Флаг владельца
 
-            // Выполнение запроса
             int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                success = true; // Если запись успешно добавлена
-            }
+            success = rowsInserted > 0;
 
-            preparedStatement.close();
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            System.err.println("Не найден драйвер JDBC: " + e.getMessage());
+            if (!success) {
+                System.err.println("Не удалось добавить консультацию: " +
+                        "appointmentId=" + appointmentId + ", diseaseId=" + diseaseId + ", isOwner=" + isOwner);
+            }
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
@@ -62,4 +58,6 @@ public class VetAppointmentSQL {
 
         return success;
     }
+
+
 }

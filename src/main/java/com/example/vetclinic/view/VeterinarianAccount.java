@@ -128,6 +128,20 @@ public class VeterinarianAccount {
     }
 
     @FXML
+    void viewDiseases(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/vetclinic/view/diseaseView.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     void initialize() {
         assert address != null : "fx:id=\"address\" was not injected: check your FXML file 'vetAccount.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'vetAccount.fxml'.";
@@ -139,9 +153,10 @@ public class VeterinarianAccount {
         assert toChangeData != null : "fx:id=\"toChangeData\" was not injected: check your FXML file 'vetAccount.fxml'.";
         assert cancel != null : "fx:id=\"cancel\" was not injected: check your FXML file 'vetAccount.fxml'.";
 
+
         number.setText(VetSignInController.getLogin());  // Используем getLogin() из VetSignInController
-        String[] users = doctorSQL.getDoctor(VetSignInController.getLogin());
+        String[] users = doctorSQL.getVet(VetSignInController.getLogin());
         name.setText(users[1]);
-        address.setText(users[2]);
+        address.setText(users[3]);
     }
 }

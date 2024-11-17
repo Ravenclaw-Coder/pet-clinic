@@ -6,42 +6,36 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class VetAppointmentController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button back;
 
     @FXML
-    private Button back1;
+    private Button confirmButton;
 
     @FXML
-    private TextField disease;
+    private TextField disease_id;
+
+    @FXML
+    private TextField appoint_id;
+
+    @FXML
+    private CheckBox ownerCheckbox;
 
     @FXML
     private Label error;
 
-    @FXML
-    private TextField number;
-    private VetAppointmentSQL recepSQL ;
+    private final VetAppointmentSQL consultSQL;
 
-    public VetAppointmentController(){
-        recepSQL = VetAppointmentSQL.getInstance();
+    public VetAppointmentController() {
+        consultSQL = VetAppointmentSQL.getInstance();
     }
 
     @FXML
@@ -59,37 +53,49 @@ public class VetAppointmentController {
 
     @FXML
     void toRecep(ActionEvent event) {
-        if (number.getText().isEmpty() & disease.getText().isEmpty()){
-            error.setText("заполните все поля");
-        }
-        else {
-            boolean flag = recepSQL.addAppointment(Integer.parseInt(number.getText()), Integer.parseInt(disease.getText()));
-            if (flag){
-                try {
-                    Parent loginRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/vetAccount.fxml"));
-                    Scene loginScene = new Scene(loginRoot);
-                    Stage window = (Stage) ((Button) event.getSource()).getScene().getWindow();
-                    window.setScene(loginScene);
-                    window.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            else {
-                error.setText("приема не существует");
-            }
+        // Получаем значения полей и состояния чекбокса
+        String appointmentIdText = appoint_id.getText();
+        String diseaseIdText = disease_id.getText();
+        boolean isOwner = ownerCheckbox.isSelected();
+
+        // Проверка заполненности полей
+        if (appointmentIdText.isEmpty() || diseaseIdText.isEmpty()) {
+            error.setText("Заполните все поля");
+            return;
         }
 
+        try {
+            // Конвертация ID в числа
+            int appointmentId = Integer.parseInt(appointmentIdText);
+            int diseaseId = Integer.parseInt(diseaseIdText);
+
+            // Вызов метода для добавления консультации
+            boolean success = consultSQL.addConsultation(appointmentId, diseaseId, isOwner);
+
+            if (success) {
+                // Переход на экран аккаунта
+                Parent loginRoot = FXMLLoader.load(getClass().getResource("/com/example/vetclinic/view/vetAccount.fxml"));
+                Scene loginScene = new Scene(loginRoot);
+                Stage window = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                window.setScene(loginScene);
+                window.show();
+            } else {
+                error.setText("Ошибка: приема с таким ID не существует");
+            }
+        } catch (NumberFormatException e) {
+            error.setText("Введите корректные числовые значения");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void initialize() {
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'vetAppointController.fxml'.";
-        assert back1 != null : "fx:id=\"back1\" was not injected: check your FXML file 'vetAppointController.fxml'.";
-        assert disease != null : "fx:id=\"disease\" was not injected: check your FXML file 'vetAppointController.fxml'.";
+        assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file 'vetAppointController.fxml'.";
+        assert disease_id != null : "fx:id=\"disease_id\" was not injected: check your FXML file 'vetAppointController.fxml'.";
+        assert appoint_id != null : "fx:id=\"appoint_id\" was not injected: check your FXML file 'vetAppointController.fxml'.";
+        assert ownerCheckbox != null : "fx:id=\"ownerCheckbox\" was not injected: check your FXML file 'vetAppointController.fxml'.";
         assert error != null : "fx:id=\"error\" was not injected: check your FXML file 'vetAppointController.fxml'.";
-        assert number != null : "fx:id=\"number\" was not injected: check your FXML file 'vetAppointController.fxml'.";
-
     }
-
 }
