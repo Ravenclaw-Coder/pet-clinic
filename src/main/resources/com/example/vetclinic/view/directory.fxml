@@ -2,13 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.TextArea?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.view.BreedDiseaseDirectory">
    <children>
       <Button fx:id="back" layoutX="485.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
@@ -27,10 +26,9 @@
          </font>
       </Label>
       <TextField fx:id="name" layoutX="201.0" layoutY="83.0" prefHeight="26.0" prefWidth="230.0" />
-      <Button fx:id="btnFind" layoutX="458.0" layoutY="83.0" mnemonicParsing="false" onAction="#toFind" text="Искать" textFill="#151753" />
+      <Button fx:id="btnFind" layoutX="458.0" layoutY="83.0" mnemonicParsing="false" onAction="#toFind" text="Найти" textFill="#151753" />
       <Label fx:id="error" layoutX="201.0" layoutY="60.0" />
-      <TextArea fx:id="list" layoutX="81.0" layoutY="125.0" prefHeight="222.0" prefWidth="438.0"
-                editable="false" wrapText="true" style="-fx-font-family: 'Monospaced'; -fx-font-size: 14px;" />
+      <TextArea fx:id="list" editable="false" layoutX="81.0" layoutY="125.0" prefHeight="202.0" prefWidth="438.0" style="-fx-font-family: 'Monospaced'; -fx-font-size: 14px;" wrapText="true" />
 
       <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="530.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
 

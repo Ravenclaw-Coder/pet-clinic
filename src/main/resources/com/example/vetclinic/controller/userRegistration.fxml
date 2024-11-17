@@ -15,7 +15,7 @@
       <Pane layoutX="79.0" layoutY="124.0" prefHeight="151.0" prefWidth="442.0" style="-fx-background-color: #151753;" />
       <Label layoutX="79.0" layoutY="55.0" text="Регистрация. Клиент" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="24.0" />
+            <Font name="System Bold Italic" size="30.0" />
          </font>
       </Label>
       <Label layoutX="90.0" layoutY="133.0" text="Введите имя:" textFill="#f8f8f8">

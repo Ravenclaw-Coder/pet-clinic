@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.vetclinic.view.DiseaseViewController" spacing="10" alignment="CENTER">
-    <Label text="Список болезней" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-    <TableView fx:id="diseaseTable" prefHeight="400" prefWidth="600">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10" style="-fx-background-color: #151753;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.vetclinic.view.DiseaseViewController">
+    <Label prefWidth="150.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Список болезней" textFill="WHITE">
+      <font>
+         <Font size="20.0" />
+      </font></Label>
+    <TableView fx:id="diseaseTable" prefHeight="307.0" prefWidth="600">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
-            <TableColumn fx:id="commonNameColumn" text="Common_Name" prefWidth="250" />
-            <TableColumn fx:id="scientificNameColumn" text="Scientific_Name " prefWidth="250" />
+            <TableColumn fx:id="idColumn" prefWidth="100" text="Код" />
+            <TableColumn fx:id="commonNameColumn" prefWidth="250" text="Название" />
+            <TableColumn fx:id="scientificNameColumn" prefWidth="250" text="Научное название" />
         </columns>
     </TableView>
-    <Button text="Вернуться" fx:id="closeButton" onAction="#onClose" />
+    <Button fx:id="closeButton" onAction="#onClose" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE" />
 </VBox>

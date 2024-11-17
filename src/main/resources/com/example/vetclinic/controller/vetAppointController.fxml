@@ -14,18 +14,18 @@
                 <Font size="15.0" />
             </font>
         </Button>
-        <Label layoutX="217.0" layoutY="33.0" text="Консультация" textFill="WHITE">
+        <Label layoutX="201.0" layoutY="33.0" text="Консультация" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="29.0" />
             </font>
         </Label>
-        <Label layoutX="25.0" layoutY="95.0" text="Номер приема" textFill="WHITE">
+        <Label layoutX="25.0" layoutY="95.0" text="Код приема" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
         <TextField fx:id="appoint_id" layoutX="164.0" layoutY="95.0" prefHeight="26.0" prefWidth="230.0" />
-        <Label fx:id="error1" layoutX="201.0" layoutY="60.0" />
+        <Label fx:id="error" layoutX="201.0" layoutY="60.0" />
         <Label layoutX="25.0" layoutY="139.0" text="Заболевание" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="18.0" />
@@ -37,15 +37,15 @@
                 <Font size="15.0" />
             </font>
         </Button>
-        <Label fx:id="error2" layoutX="157.0" layoutY="186.0" textFill="#5e1717">
-            <font>
-                <Font name="System Bold" size="18.0" />
-            </font>
-        </Label>
       <CheckBox fx:id="ownerCheckbox" layoutX="166.0" layoutY="187.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Есть владелец?" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </CheckBox>
+      <Label layoutX="41.0" layoutY="165.0" text="(Диагноз)" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

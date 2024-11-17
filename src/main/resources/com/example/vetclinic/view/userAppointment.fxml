@@ -28,10 +28,10 @@
       </ImageView>
       <TableView fx:id="appointmentsTable" layoutX="48.0" layoutY="84.0" prefHeight="252.0" prefWidth="503.0">
          <columns>
-            <TableColumn fx:id="appointmentIdColumn" prefWidth="100.0" text="Appointment ID" />
-            <TableColumn fx:id="vetNameColumn" prefWidth="150.0" text="Doctor Name" />
-            <TableColumn fx:id="appointmentDateColumn" prefWidth="150.0" text="Date" />
-            <TableColumn fx:id="appointmentTimeColumn" prefWidth="100.0" text="Time" />
+            <TableColumn fx:id="appointmentIdColumn" prefWidth="100.0" text="Код" />
+            <TableColumn fx:id="vetNameColumn" prefWidth="150.0" text="Доктор" />
+            <TableColumn fx:id="appointmentDateColumn" prefWidth="150.0" text="Дата" />
+            <TableColumn fx:id="appointmentTimeColumn" prefWidth="100.0" text="Время" />
          </columns>
       </TableView>
 

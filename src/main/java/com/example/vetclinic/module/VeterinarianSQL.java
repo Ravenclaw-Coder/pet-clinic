@@ -1,5 +1,8 @@
 package com.example.vetclinic.module;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -189,45 +192,28 @@ public class VeterinarianSQL {
     }
 
 
-    public boolean addPassword(String phone, String password) {
+    public boolean addPassword(String phone, String newPassword) {
         Connection connection = null;
         boolean success = false;
 
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/petclinic",
-                    "root", "");
+                    "jdbc:mysql://localhost:3306/petclinic", "root", "");
 
-            // Получаем ID роли "veterinarian" из таблицы roles
-            String getRoleIdQuery = "SELECT id FROM roles WHERE role_name = ?";
-            PreparedStatement roleStmt = connection.prepareStatement(getRoleIdQuery);
-            roleStmt.setString(1, "veterinarian");
-            ResultSet roleResult = roleStmt.executeQuery();
-
-            int roleId = -1;
-            if (roleResult.next()) {
-                roleId = roleResult.getInt("id");
-            } else {
-                System.out.println("Роль 'veterinarian' не найдена.");
-                return false;
-            }
-
-            // Вставляем пользователя в таблицу users
-            String query = "INSERT INTO users (username, password, role_id) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, phone); // Используем телефон как имя пользователя
-            preparedStatement.setString(2, password);
-            preparedStatement.setInt(3, roleId);
+            // Обновляем пароль для пользователя с данным телефоном (username)
+            String updatePasswordQuery = "UPDATE users SET password = ? WHERE username = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(updatePasswordQuery);
+            preparedStatement.setString(1, newPassword); // Новый пароль
+            preparedStatement.setString(2, phone);        // Телефон как имя пользователя
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 success = true;
-                System.out.println("Пользователь успешно добавлен: " + phone);
+                System.out.println("Пароль успешно обновлен для пользователя: " + phone);
             } else {
-                System.out.println("Не удалось добавить пользователя.");
+                System.out.println("Не удалось обновить пароль.");
             }
 
-            roleStmt.close();
             preparedStatement.close();
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении SQL-запроса: " + e.getMessage());
@@ -240,8 +226,10 @@ public class VeterinarianSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
+
         return success;
     }
+
 
 
     public String[] getVet(String phone) {
@@ -326,11 +314,11 @@ public class VeterinarianSQL {
         return success;
     }
 
-    public ArrayList<String> listAppointments(String phone, LocalDate date) {
+    public ObservableList<Appointment> listAppointments(String phone, LocalDate date) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        ArrayList<String> list = new ArrayList<>();
+        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -339,7 +327,8 @@ public class VeterinarianSQL {
                     "root", "");
 
             String query = "SELECT appointments.id AS appointment_id, appointments.appointment_date AS appointment_date, " +
-                    "pets.name AS pet_name, appointments.appointment_time AS appointment_time " +
+                    "pets.name AS pet_name, appointments.appointment_time AS appointment_time, " +
+                    "appointments.is_completed AS is_completed " +
                     "FROM appointments " +
                     "JOIN pets ON appointments.pet_id = pets.id " +
                     "JOIN veterinarians ON appointments.veterinarian_id = veterinarians.id " +
@@ -352,16 +341,16 @@ public class VeterinarianSQL {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String appointment = resultSet.getInt("appointment_id") + " " +
-                        resultSet.getString("appointment_date") + " " +
-                        resultSet.getString("pet_name") + " " +
-                        resultSet.getString("appointment_time");
-                list.add(appointment);
+                int appointmentId = resultSet.getInt("appointment_id");
+                String appointmentDate = resultSet.getString("appointment_date");
+                String petName = resultSet.getString("pet_name");
+                String appointmentTime = resultSet.getString("appointment_time");
+                boolean isCompleted = resultSet.getBoolean("is_completed");
+
+                // Создаем объект Appointment и добавляем в список
+                appointments.add(new Appointment(appointmentId, appointmentDate, petName, appointmentTime, isCompleted));
             }
 
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
         } catch (ClassNotFoundException e) {
             System.err.println("Не найден драйвер JDBC: " + e.getMessage());
         } catch (SQLException e) {
@@ -375,6 +364,8 @@ public class VeterinarianSQL {
                 System.err.println("Ошибка при закрытии соединения: " + e.getMessage());
             }
         }
-        return list;
+
+        return appointments;
     }
+
 }

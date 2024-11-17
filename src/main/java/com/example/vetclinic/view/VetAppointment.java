@@ -48,6 +48,9 @@ public class VetAppointment {
     private TableColumn<Appointment, String> petNameColumn;
     @FXML
     private TableColumn<Appointment, String> appointmentTimeColumn;
+    @FXML
+    private TableColumn<Appointment, String> statusColumn;
+
 
 
 
@@ -73,35 +76,38 @@ public class VetAppointment {
         assert petNameColumn != null : "fx:id=\"petNameColumn\" was not injected: check your FXML file 'vetAppointment.fxml'.";
         assert appointmentTimeColumn != null : "fx:id=\"appointmentTimeColumn\" was not injected: check your FXML file 'vetAppointment.fxml'.";
 
-        VeterinarianSQL doctorSQL = VeterinarianSQL.getInstance();
-        LocalDate date_current = LocalDate.now();
-
-        ArrayList<String> list = doctorSQL.listAppointments(VetSignInController.getLogin(),date_current);
-
-        if (list.isEmpty()) {
-            // Если записей нет, показать сообщение
-            appointmentsTable.setPlaceholder(new Label("У Вас нет записей."));
-        } else {
-            // Заполняем таблицу данными
-            ObservableList<Appointment> appointments = FXCollections.observableArrayList();
-            for (String entry : list) {
-                String[] data = entry.split(" ");  // Разбиваем строку на части
-                if (data.length == 4) {
-                    int appointmentId = Integer.parseInt(data[0]);
-                    String appointmentDate = data[1];
-                    String petName = data[2];
-                    String appointmentTime = data[3];
-                    appointments.add(new Appointment(appointmentId, appointmentDate, petName, appointmentTime));
-                }
-            }
-            appointmentsTable.setItems(appointments);
-        }
-
-        // Настройка колонок
+        // Настройка остальных колонок
         appointmentIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAppointmentId()).asObject());
         appointmentDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAppointmentDate()));
         petNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPetName()));
         appointmentTimeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAppointmentTime()));
+
+        // Настройка новой колонки для статуса
+        statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
+
+        VeterinarianSQL doctorSQL = VeterinarianSQL.getInstance();
+        LocalDate date_current = LocalDate.now();
+
+        // Получение данных и заполнение таблицы
+        ObservableList<Appointment> appointments = doctorSQL.listAppointments(VetSignInController.getLogin(), date_current);
+
+        if (appointments.isEmpty()) {
+            appointmentsTable.setPlaceholder(new Label("У Вас нет записей."));
+        } else {
+            appointmentsTable.setItems(appointments);
+        }
+    }
+    @FXML
+    void filterCompletedAppointments(MouseEvent event) {
+        ObservableList<Appointment> filteredAppointments = FXCollections.observableArrayList();
+
+        for (Appointment appointment : appointmentsTable.getItems()) {
+            if (appointment.isCompleted()) {
+                filteredAppointments.add(appointment);
+            }
+        }
+
+        appointmentsTable.setItems(filteredAppointments);
     }
 
 }

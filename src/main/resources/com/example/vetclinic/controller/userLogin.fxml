@@ -44,5 +44,10 @@
             <Image url="@../image/white_on_trans.png" />
          </image>
       </ImageView>
+      <Label layoutX="249.0" layoutY="32.0" text="Клиент" textFill="#151753">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

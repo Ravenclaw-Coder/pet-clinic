@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.ChangeVeterinarian">
    <children>
-      <Button fx:id="back" layoutX="524.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Назад" textFill="WHITE">
+      <Button fx:id="back" layoutX="496.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -28,12 +28,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="186.0" text="Номер телефона:" textFill="WHITE">
+      <Label layoutX="57.0" layoutY="186.0" text="Номер телефона:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="147.0" layoutY="227.0" text="Пароль:" textFill="WHITE">
+      <Label layoutX="141.0" layoutY="227.0" text="Пароль:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -41,12 +41,12 @@
       <TextField fx:id="name" layoutX="220.0" layoutY="106.0" />
       <TextField fx:id="address" layoutX="220.0" layoutY="145.0" />
       <TextField fx:id="password" layoutX="220.0" layoutY="228.0" />
-      <Label layoutX="27.0" layoutY="30.0" text="Изменение моих персональных данных" textFill="WHITE">
+      <Label layoutX="57.0" layoutY="38.0" text="Изменение моих персональных данных" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="phone" layoutX="220.0" layoutY="186.0" textFill="WHITE">
+      <Label fx:id="phone" layoutX="220.0" layoutY="186.0" prefHeight="27.0" prefWidth="149.0" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>

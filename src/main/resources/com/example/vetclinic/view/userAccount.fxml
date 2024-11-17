@@ -5,6 +5,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.view.UserAccount">
@@ -29,10 +32,26 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="166.0" layoutY="48.0" text="Мой аккаунт. Клиент" textFill="WHITE">
+      <Label layoutX="166.0" layoutY="48.0" text="Мой аккаунт. Клиент">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.37539429769907084" startX="1.0" startY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.08235294371843338" green="0.09019608050584793" blue="0.32549020648002625" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Label>
       <Label layoutX="67.0" layoutY="104.0" text="Имя:" textFill="WHITE">
          <font>
@@ -60,8 +79,8 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Button fx:id="cancel" layoutX="228.0" layoutY="296.0" mnemonicParsing="false" onAction="#toCancel" onMouseClicked="#myTricks" text="отменить запись" textFill="#565ac0" />
-      <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="525.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="cancel" layoutX="228.0" layoutY="296.0" mnemonicParsing="false" onAction="#toCancel" onMouseClicked="#myTricks" style="-fx-background-color: #565ac0;" text="отменить запись" textFill="WHITE" />
+      <ImageView fitHeight="74.0" fitWidth="75.0" layoutX="518.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/white_on_trans.png" />
          </image>

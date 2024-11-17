@@ -11,12 +11,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #151753;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.controller.UserAppointmentController">
    <children>
-      <Label layoutX="200.0" layoutY="23.0" text="Запись на прием" textFill="WHITE">
+      <Label layoutX="188.0" layoutY="24.0" text="Запись на прием" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Label layoutX="151.0" layoutY="58.0" text="Укажите данные вашего питомца" textFill="WHITE">
+      <Label layoutX="150.0" layoutY="65.0" text="Укажите данные вашего питомца" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -56,7 +56,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="back" layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
+      <Button fx:id="back" layoutX="489.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#toBack" style="-fx-background-color: #000000;" text="Вернуться" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -64,7 +64,7 @@
       <CheckBox fx:id="clicker" layoutX="260.0" layoutY="139.0" mnemonicParsing="false" onAction="#togglePoroda" textFill="#511b1b" />
       <DatePicker fx:id="date" layoutX="133.0" layoutY="256.0" promptText="date" />
       <TextField fx:id="name" layoutX="260.0" layoutY="101.0" />
-      <TextField fx:id="namePoroda" layoutX="260.0" layoutY="174.0" disable="true"/> <!-- Поле породы изначально отключено -->
+      <TextField fx:id="namePoroda" disable="true" layoutX="260.0" layoutY="174.0" /> <!-- Поле породы изначально отключено -->
       <RadioButton fx:id="btnMorn" layoutX="427.0" layoutY="262.0" mnemonicParsing="false" text="10:00" textFill="WHITE" />
       <RadioButton fx:id="btnAft_Morn" layoutX="427.0" layoutY="293.0" mnemonicParsing="false" text="12:00" textFill="WHITE" />
       <RadioButton fx:id="btnEven" layoutX="500.0" layoutY="293.0" mnemonicParsing="false" text="18:00" textFill="WHITE" />
